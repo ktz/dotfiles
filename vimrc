@@ -14,28 +14,30 @@ set hlsearch
 ""set autoindent
 set smartindent
 set title
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set showcmd
 set expandtab
 set laststatus=2
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
+
 au InsertEnter * hi StatusLine term=reverse ctermfg=1
 au InsertLeave * hi StatusLine term=reverse ctermfg=2
  
 filetype on
 filetype plugin indent on
 
-autocmd FileType html,css,js set sw=2 sts=2
+autocmd FileType css,eruby,html,Rails-js,python,ruby,scala,xml,yaml set sw=2 sts=2
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby,yaml,python set sw=2 sts=2
-autocmd FileType php set dictionary=~/.vim/dictionary/php.dict
+"autocmd FileType php set dictionary=~/.vim/dictionary/php.dict
  
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
  
 map <Leader>c ,c<space>
+"nnoremap <silent>ff :FuzzyFinderFile<CR>
+nnoremap <Leader>ff :FuzzyFinderFile<CR>
 "highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 "au BufNewFile,BufRead * match ZenkakuSpace /　/
 

@@ -2,7 +2,7 @@ export LANG=ja_JP.UTF-8
 export SHELL=/opt/local/bin/zsh
 export LC_TYPE=C
 export LC_ALL=C
-export PATH=/usr/local/bin/:/opt/local/bin:$PATH
+export PATH=/usr/local/bin/:/opt/local/bin:/opt/local/sbin/:$PATH
  
 PROMPT="%{[31m%}%n@%m${WINDOW:+"[$WINDOW]"}
 %%%{[m%} "
@@ -63,5 +63,6 @@ if [[ "$TERM" == "screen" ]]; then
     }
 fi
 
-alias screen="screen -U" 
+alias screen="screen -U"
+alias crontab="EDITOR=nano crontab"
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
