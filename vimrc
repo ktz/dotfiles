@@ -37,7 +37,7 @@ let g:rubycomplete_rails = 1
  
 map <Leader>c ,c<space>
 "nnoremap <silent>ff :FuzzyFinderFile<CR>
-nnoremap <Leader>ff :FuzzyFinderFile<CR>
+nnoremap <Leader>ff :FufFile<CR>
 nnoremap <Leader>p :NERDTreeToggle<CR>
 "highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=#666666
 "au BufNewFile,BufRead * match ZenkakuSpace /　/
