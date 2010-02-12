@@ -1,0 +1,26 @@
+snippet =
+	<%= ${1} %>
+
+snippet -
+	<%- ${1} -%>
+
+snippet t
+	<%=t '${1}' %>
+
+snippet raw
+	<%=raw ${1} %>
+
+snippet if
+	<%- if ${1:cond} -%>
+	  ${2}
+	<%- end -%>
+
+snippet unless
+	<%- unless ${1:cond} -%>
+	  ${2}
+	<%- end -%>
+
+snippet each
+	<%- ${1:collection}.each do |${2:member}| -%>
+	  ${3}
+	<%- end -%>
