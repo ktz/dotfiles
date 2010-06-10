@@ -17,6 +17,7 @@ set smartindent
 set title
 set tabstop=2
 set shiftwidth=2
+set softtabstop=2
 set showcmd
 set expandtab
 set laststatus=2
@@ -28,7 +29,7 @@ set nobackup
 set noswapfile
 set vb t_vb=
 set grepprg=grep\ -nH
-    
+
 
 syntax on
 hi LineNr ctermbg=black
@@ -41,7 +42,7 @@ au InsertEnter * hi StatusLine term=reverse ctermfg=1
 au InsertLeave * hi StatusLine term=reverse ctermfg=2
 au QuickfixCmdPost vimgrep cw
 au QuickfixCmdPost grep cw
-au FileType css,eruby,html,java,js,Rails-js,python,ruby,scala,xml,yaml set sw=2 sts=2
+"au FileType css,eruby,html,java,js,Rails-js,python,ruby,scala,xml,yaml set sw=2 sts=2
 au FileType ruby,eruby set omnifunc=rubycomplete#Complete
 
 let g:rubycomplete_buffer_loading = 1
@@ -51,15 +52,26 @@ let g:rubycomplete_rails = 1
 hi ZenkakuSpace ctermbg=red
 au BufNewFile,BufRead * match ZenkakuSpace /　/
 
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-h> <c-w>h
+map <c-l> <c-w>l
 map <leader>c ,c<space>
-nmap <leader>ff :FufFile<CR>
-nmap <leader>d :NERDTreeToggle<CR>
+nmap <leader>ff :FufFile<cr>
+nmap <leader>d :NERDTreeToggle<cr>
 
 if has('mac') && !has('gui')
-  map <silent> <leader>y :w !pbcopy<CR><CR>
-  map <silent> <leader>p :r !pbpaste<CR>
+  map <silent> <leader>y :w !pbcopy<cr><cr>
+  map <silent> <leader>p :r !pbpaste<cr>
 else
   nmap <leader>y "+y
   nmap <leader>p "+p
 endif
 
+"taglist
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_Use_Right_Window=1
+map <silent> <leader>tl :TlistToggle<cr>
+
+autocmd! bufwritepost .vimrc source ~/.vimrc
