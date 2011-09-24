@@ -1,8 +1,8 @@
 export LANG=ja_JP.UTF-8
-export SHELL=/opt/local/bin/zsh
+export SHELL=/bin/zsh
 export LC_TYPE=C
 export LC_ALL=C
-export PATH=/usr/local/bin/:/opt/local/bin:/opt/local/sbin/:$PATH
+export PATH=/usr/local/bin/:$PATH
  
 PROMPT="%{[31m%}%n@%m${WINDOW:+"[$WINDOW]"}
 %%%{[m%} "
