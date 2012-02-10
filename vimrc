@@ -52,11 +52,12 @@ let g:rubycomplete_rails = 1
 hi ZenkakuSpace ctermbg=red
 au BufNewFile,BufRead * match ZenkakuSpace /　/
 
+map <Esc><Esc> :noh<cr>
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-h> <c-w>h
 map <c-l> <c-w>l
-map <leader>c ,c<space>
+"map <leader>c ,c<space>
 nmap <leader>ff :FufFile<cr>
 nmap <leader>d :NERDTreeToggle<cr>
 
