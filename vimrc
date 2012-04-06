@@ -1,4 +1,23 @@
 set nocompatible
+filetype off
+set rtp+=~/.vim/vundle.git/
+call vundle#rc()
+Bundle "gmarik/vundle"
+Bundle "L9"
+Bundle "FuzzyFinder"
+Bundle "surround.vim"
+Bundle "YankRing.vim"
+Bundle "The-NERD-tree"
+Bundle "The-NERD-Commenter"
+Bundle "snipMate"
+Bundle "AutoClose"
+Bundle "vim-coffee-script"
+Bundle "grep.vim"
+Bundle "html5.vim"
+Bundle "vim-ruby/vim-ruby"
+Bundle "rails.vim"
+filetype plugin indent on
+
 set enc=utf-8
 set fenc=utf-8
 set fencs=utf-8,cp932,iso-2022-jp,euc-jp
@@ -30,14 +49,16 @@ set noswapfile
 set vb t_vb=
 set grepprg=grep\ -nH
 
+set foldmethod=syntax
+set foldlevel=10
 
 syntax on
 hi LineNr ctermbg=black
 "hi SpecialKey ctermfg=lightgrey
 "hi NonText ctermfg=gray
 "hi Comment ctermfg=brown
-filetype on
-filetype plugin indent on
+"filetype on
+"filetype plugin indent on
 au InsertEnter * hi StatusLine term=reverse ctermfg=1
 au InsertLeave * hi StatusLine term=reverse ctermfg=2
 au QuickfixCmdPost vimgrep cw
