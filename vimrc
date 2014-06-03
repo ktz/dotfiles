@@ -1,22 +1,30 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/vundle.git/
+set rtp+=~/.vim/bundle/vundle/
+"set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 Bundle "gmarik/vundle"
-Bundle "L9"
-Bundle "FuzzyFinder"
+"Bundle "L9"
+"Bundle "FuzzyFinder"
+Bundle "unite.vim"
 Bundle "surround.vim"
 Bundle "YankRing.vim"
 Bundle "The-NERD-tree"
 Bundle "The-NERD-Commenter"
-Bundle "snipMate"
-Bundle "AutoClose"
 Bundle "vim-coffee-script"
 Bundle "grep.vim"
 Bundle "html5.vim"
 Bundle "vim-ruby/vim-ruby"
-Bundle "rails.vim"
+Bundle "tpope/vim-rails"
+Bundle "groenewege/vim-less"
+Bundle "MarcWeber/vim-addon-mw-utils"
+Bundle "tomtom/tlib_vim"
+Bundle "snipmate-snippets"
+Bundle "garbas/vim-snipmate"
+Bundle "jellybeans.vim"
+Bundle "derekwyatt/vim-scala"
 filetype plugin indent on
+let g:snippets_dir = $HOME."./.vim/snippets"
 
 set enc=utf-8
 set fenc=utf-8
@@ -28,7 +36,8 @@ set wrapscan
 set noincsearch
 set number
 set list
-"set listchars=tab:>>
+"set listchars=tab:>>t
+set listchars=eol:¬,tab:▸\
 set wildmenu
 set hlsearch
 "set autoindent
@@ -50,7 +59,7 @@ set vb t_vb=
 set grepprg=grep\ -nH
 
 set foldmethod=syntax
-set foldlevel=10
+set foldlevel=5
 
 syntax on
 hi LineNr ctermbg=black
@@ -66,6 +75,8 @@ au QuickfixCmdPost grep cw
 "au FileType css,eruby,html,java,js,Rails-js,python,ruby,scala,xml,yaml set sw=2 sts=2
 au FileType ruby,eruby set omnifunc=rubycomplete#Complete
 
+let g:yankring_manual_clipboard_check = 0
+let g:NERDTreeWinSize = 36
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
@@ -96,4 +107,6 @@ endif
 "let Tlist_Use_Right_Window=1
 "map <silent> <leader>tl :TlistToggle<cr>
 
+"command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 autocmd! bufwritepost .vimrc source ~/.vimrc
+

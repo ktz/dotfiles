@@ -27,6 +27,8 @@ HISTFILE=~/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 setopt hist_ignore_dups
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
 setopt share_history
  
 fpath=(~/.zsh/functions/Completion ${fpath})
@@ -59,6 +61,7 @@ if [[ "$TERM" == "screen" ]]; then
     }
 fi
 
+alias tmux="tmux -u"
 alias screen="screen -U"
 alias crontab="EDITOR=nano crontab"
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
