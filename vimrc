@@ -4,13 +4,11 @@ set rtp+=~/.vim/bundle/vundle/
 "set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 Bundle "gmarik/vundle"
-"Bundle "L9"
-"Bundle "FuzzyFinder"
-Bundle "unite.vim"
+Bundle "https://github.com/Shougo/unite.vim.git"
+Bundle "https://github.com/Shougo/vimfiler.vim.git"
 Bundle "surround.vim"
 Bundle "YankRing.vim"
-Bundle "The-NERD-tree"
-Bundle "The-NERD-Commenter"
+Bundle "https://github.com/tyru/caw.vim.git"
 Bundle "vim-coffee-script"
 Bundle "grep.vim"
 Bundle "html5.vim"
@@ -23,6 +21,8 @@ Bundle "snipmate-snippets"
 Bundle "garbas/vim-snipmate"
 Bundle "jellybeans.vim"
 Bundle "derekwyatt/vim-scala"
+Bundle "https://github.com/nathanaelkane/vim-indent-guides.git"
+Bundle "https://github.com/junegunn/vim-easy-align.git"
 filetype plugin indent on
 let g:snippets_dir = $HOME."./.vim/snippets"
 
@@ -75,8 +75,13 @@ au QuickfixCmdPost grep cw
 "au FileType css,eruby,html,java,js,Rails-js,python,ruby,scala,xml,yaml set sw=2 sts=2
 au FileType ruby,eruby set omnifunc=rubycomplete#Complete
 
+colorscheme default
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+hi IndentGuidesOdd ctermbg=000
+hi IndentGuidesEven ctermbg=234
+
 let g:yankring_manual_clipboard_check = 0
-let g:NERDTreeWinSize = 36
 let g:rubycomplete_buffer_loading = 1
 let g:rubycomplete_classes_in_global = 1
 let g:rubycomplete_rails = 1
@@ -89,9 +94,20 @@ map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-h> <c-w>h
 map <c-l> <c-w>l
-"map <leader>c ,c<space>
-nmap <leader>ff :FufFile<cr>
-nmap <leader>d :NERDTreeToggle<cr>
+
+nnoremap [unite] <Nop>
+nmap <leader>u [unite]
+nnoremap <silent> [unite]f :Unite file<cr>
+nnoremap <silent> [unite]b :Unite buffer<cr>
+nnoremap <silent> [unite]r :Unite file_mru<cr>
+
+nnoremap <leader>f :VimFiler<cr>
+
+nmap <leader>c <Plug>(caw:i:toggle)
+vmap <leader>c <Plug>(caw:i:toggle)
+
+vmap <enter> <plug>(EasyAlign)
+nmap <leader>a <plug>(EasyAlign)
 
 if has('mac') && !has('gui')
   map <silent> <leader>y :w !pbcopy<cr><cr>
