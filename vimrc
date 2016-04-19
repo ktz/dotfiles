@@ -6,12 +6,14 @@ call vundle#rc()
 Bundle "gmarik/vundle"
 Bundle "https://github.com/Shougo/unite.vim.git"
 Bundle "https://github.com/Shougo/vimfiler.vim.git"
+Bundle "https://github.com/tyru/caw.vim.git"
 Bundle "surround.vim"
 Bundle "YankRing.vim"
-Bundle "https://github.com/tyru/caw.vim.git"
-Bundle "vim-coffee-script"
-Bundle "grep.vim"
+Bundle "https://github.com/elixir-lang/vim-elixir.git"
 Bundle "html5.vim"
+Bundle "vim-coffee-script"
+
+Bundle "grep.vim"
 Bundle "vim-ruby/vim-ruby"
 Bundle "tpope/vim-rails"
 Bundle "groenewege/vim-less"
@@ -102,6 +104,10 @@ nnoremap <silent> [unite]b :Unite buffer<cr>
 nnoremap <silent> [unite]r :Unite file_mru<cr>
 
 nnoremap <leader>f :VimFiler<cr>
+let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default = 0
+noremap <silent> :tree :Vimfiler -split -simple -winwidth=45 -no-quit
+" noremap noremap
 
 nmap <leader>c <Plug>(caw:i:toggle)
 vmap <leader>c <Plug>(caw:i:toggle)
@@ -122,6 +128,7 @@ endif
 "let Tlist_Exit_OnlyWindow=1
 "let Tlist_Use_Right_Window=1
 "map <silent> <leader>tl :TlistToggle<cr>
+
 
 "command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis | wincmd p | diffthis
 autocmd! bufwritepost .vimrc source ~/.vimrc
