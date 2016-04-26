@@ -15,13 +15,16 @@ call dein#add('sheerun/vim-polyglot')
 call dein#add('tyru/caw.vim')
 call dein#add('jreybert/vimagit')
 call dein#add('airblade/vim-gitgutter')
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
+call dein#add('itchyny/lightline.vim')
 call dein#add('tpope/vim-surround')
 call dein#add('konfekt/FastFold')
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('nanotech/jellybeans.vim')
+call dein#add('elixir-lang/vim-elixir')
+call dein#add('scrooloose/syntastic')
 " call dein#add('ryanoasis/vim-devicons')
+call dein#add('pangloss/vim-javascript')
+call dein#add('mxw/vim-jsx')
 if dein#check_install()
   call dein#install()
   let pluginExist=1
@@ -32,8 +35,8 @@ filetype plugin indent on
 syntax on
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 colorscheme jellybeans
+set mouse=
 set background=dark
-let g:airline_theme='jellybeans'
 set clipboard+=unnamedplus
 set noswapfile
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
@@ -86,3 +89,19 @@ nmap <leader>c gcc
 vmap <leader>c gcc
 " }}}
 
+" deoplete {{{
+let g:deoplete#enable_at_startup=1
+" inoremap <silent><expr> <Tab> pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+" }}}
+
+" syntastic {{{
+let g:syntastic_javascript_checkers=["eslint"]
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_poplulate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+" }}}
+let g:jsx_ext_required=0
