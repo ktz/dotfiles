@@ -69,16 +69,21 @@ map <c-l> <c-w>l
 " unite {{{
 nnoremap [unite] <Nop>
 nmap <leader>u [unite]
-nnoremap <silent> [unite]f :Unite file<cr>
+nnoremap <silent> [unite] :Unite file<cr>
 nnoremap <silent> [unite]y :Unite history/yank<cr>
 nnoremap <silent> [unite]b :Unite buffer<cr>
-nnoremap <silent> [unite]r :Unite file_mru<cr>
+nnoremap <silent> [unite]f :Unite file_mru<cr>
 let g:unite_enable_start_insert=1
 let g:unite_source_history_yank_enable=1
 " }}}
 
 " vimfiler {{{
+" nnoremap [vimfiler] <Nop>
+" nmap <leader>f [vimfiler]
+" nnoremap <silent> [vimfiler]f :VimFiler -split -simple -winwidth=40 -no-quit<cr>
+" nnoremap <silent> [vimfiler]c :VimFilerCurrentDir -split -simple -winwidth=40 -no-quit<cr>
 nnoremap <leader>f :VimFiler -split -simple -winwidth=40 -no-quit<cr>
+nnoremap <leader>h :VimFilerCurrentDir -split -simple -winwidth=40 -no-quit<cr>
 let g:vimfiler_as_default_explorer=1
 let g:vimfiler_safe_mode_by_default=0
 " let g:vimfiler_trashbox_directory='~/.Trash'
@@ -103,5 +108,17 @@ let g:syntastic_always_poplulate_loc_list=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=1
 let g:syntastic_check_on_wq=0
+" let g:syntastic_mode_map = {'mode': 'passive'} 
+" augroup AutoSyntastic
+"     autocmd!
+"     autocmd InsertLeave,TextChanged * call s:syntastic() 
+" augroup END
+" function! s:syntastic()
+"     w
+"     SyntasticCheck
+" endfunction
 " }}}
+
+" vim-jsx {{{
 let g:jsx_ext_required=0
+" }}}
