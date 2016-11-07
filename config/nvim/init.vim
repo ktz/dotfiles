@@ -19,12 +19,13 @@ call dein#add('itchyny/lightline.vim')
 call dein#add('tpope/vim-surround')
 call dein#add('konfekt/FastFold')
 call dein#add('terryma/vim-multiple-cursors')
-call dein#add('nanotech/jellybeans.vim')
 call dein#add('elixir-lang/vim-elixir')
 call dein#add('scrooloose/syntastic')
 " call dein#add('ryanoasis/vim-devicons')
 call dein#add('pangloss/vim-javascript')
 call dein#add('mxw/vim-jsx')
+" call dein#add('nanotech/jellybeans.vim')
+call dein#add('w0ng/vim-hybrid')
 if dein#check_install()
   call dein#install()
   let pluginExist=1
@@ -34,7 +35,7 @@ filetype plugin indent on
 
 syntax on
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-colorscheme jellybeans
+colorscheme hybrid
 set mouse=
 set background=dark
 set clipboard+=unnamedplus
