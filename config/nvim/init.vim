@@ -26,6 +26,7 @@ call dein#add('pangloss/vim-javascript')
 call dein#add('mxw/vim-jsx')
 " call dein#add('nanotech/jellybeans.vim')
 call dein#add('w0ng/vim-hybrid')
+" call dein#add('chriskempson/vim-tomorrow-theme')
 if dein#check_install()
   call dein#install()
   let pluginExist=1
@@ -36,6 +37,7 @@ filetype plugin indent on
 syntax on
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 colorscheme hybrid
+" colorscheme Tomorrow-Night
 set mouse=
 set background=dark
 set clipboard+=unnamedplus

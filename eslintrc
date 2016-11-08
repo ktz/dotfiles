@@ -2,6 +2,7 @@
   "extends": "eslint-config-airbnb",
   "rules": {
     "max-len": 0,
+    "camelcase": 0,
   }
   /* "parser": "babel-eslint",  */
   /* "env": {                   */
