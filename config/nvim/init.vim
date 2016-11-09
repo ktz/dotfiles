@@ -7,6 +7,7 @@ call dein#begin(expand('~/.config/nvim'))
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc', {'build': 'make -f make_mac.mak'})
 call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/neomru.vim')
 call dein#add('Shougo/vimfiler.vim')
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('Shougo/neosnippet.vim')
@@ -70,21 +71,30 @@ map <c-l> <c-w>l
 " unite {{{
 nnoremap [unite] <Nop>
 nmap <leader>u [unite]
-nnoremap <silent> [unite] :Unite file<cr>
-nnoremap <silent> [unite]y :Unite history/yank<cr>
+nnoremap <silent> [unite]u :Unite file<cr>
 nnoremap <silent> [unite]b :Unite buffer<cr>
 nnoremap <silent> [unite]f :Unite file_mru<cr>
 let g:unite_enable_start_insert=1
-let g:unite_source_history_yank_enable=1
+nnoremap <silent> [unite]g :<C-u>Unite grep:. -buffer-name=search-buffer<cr>
+if executable('ag')
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+autocmd FileType unite call s:unite_settings()
+function! s:unite_settings()
+  nmap <silent><buffer> <esc><esc> q
+  imap <silent><buffer> <esc><esc> <esc>q
+endfunction
 " }}}
 
 " vimfiler {{{
-" nnoremap [vimfiler] <Nop>
-" nmap <leader>f [vimfiler]
-" nnoremap <silent> [vimfiler]f :VimFiler -split -simple -winwidth=40 -no-quit<cr>
-" nnoremap <silent> [vimfiler]c :VimFilerCurrentDir -split -simple -winwidth=40 -no-quit<cr>
-nnoremap <leader>f :VimFiler -split -simple -winwidth=40 -no-quit<cr>
-nnoremap <leader>h :VimFilerCurrentDir -split -simple -winwidth=40 -no-quit<cr>
+nnoremap [vimfiler] <Nop>
+nmap <leader>f [vimfiler]
+nnoremap <silent> [vimfiler]f :VimFiler -split -simple -winwidth=40 -no-quit<cr>
+nnoremap <silent> [vimfiler]c :VimFilerCurrentDir -split -simple -winwidth=40 -no-quit<cr>
+" nnoremap <leader>f :VimFiler -split -simple -winwidth=40 -no-quit<cr>
+" nnoremap <leader>h :VimFilerCurrentDir -split -simple -winwidth=40 -no-quit<cr>
 let g:vimfiler_as_default_explorer=1
 let g:vimfiler_safe_mode_by_default=0
 " let g:vimfiler_trashbox_directory='~/.Trash'
