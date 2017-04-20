@@ -21,12 +21,13 @@ call dein#add('tpope/vim-surround')
 call dein#add('konfekt/FastFold')
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('elixir-lang/vim-elixir')
+call dein#add('elmcast/elm-vim')
 call dein#add('scrooloose/syntastic')
 " call dein#add('ryanoasis/vim-devicons')
 call dein#add('pangloss/vim-javascript')
 call dein#add('mxw/vim-jsx')
-" call dein#add('nanotech/jellybeans.vim')
 call dein#add('w0ng/vim-hybrid')
+" call dein#add('gosukiwi/vim-atom-dark')
 if dein#check_install()
   call dein#install()
   let pluginExist=1
@@ -132,4 +133,12 @@ let g:syntastic_check_on_wq=0
 
 " vim-jsx {{{
 let g:jsx_ext_required=0
+" }}}
+
+" elm-vim {{{
+let g:polyglot_disabled = ['elm']
+let g:elm_detailed_complete=1
+let g:elm_format_autosave=1
+" let g:elm_setup_keybindings=0
+let g:elm_syntastic_show_warnings=1
 " }}}
