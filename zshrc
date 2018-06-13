@@ -31,7 +31,7 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt share_history
  
-fpath=(~/.zsh/functions/Completion ${fpath})
+fpath=(~/usr/local/share/zsh-completions $fpath)
 autoload -U compinit
 compinit
  
@@ -65,3 +65,4 @@ alias tmux="tmux -u"
 alias screen="screen -U"
 alias crontab="EDITOR=nano crontab"
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+

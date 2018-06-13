@@ -1,40 +1,47 @@
+" let $VIMRUNTIME=/user/local/Cellar/neovim/0.2.1/share/nvim/runtime
+" if &compatible
+"   set nocompatible
+" endif
 if (!isdirectory(expand('~/.config/nvim/repos/github.com/Shougo/dein.vim')))
   call system(expand('mkdir -p ~/.config/nvim/repos/github.com'))
   call system(expand('git clone https://github.com/Shougo/dein.vim ~/.config/nvim/repos/github.com/Shougo/dein.vim'))
 endif
 set runtimepath+=~/.config/nvim/repos/github.com/Shougo/dein.vim/
-call dein#begin(expand('~/.config/nvim'))
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc', {'build': 'make -f make_mac.mak'})
-call dein#add('Shougo/unite.vim')
-call dein#add('Shougo/neomru.vim')
-call dein#add('Shougo/vimfiler.vim')
-call dein#add('Shougo/deoplete.nvim')
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('sheerun/vim-polyglot')
-call dein#add('tyru/caw.vim')
-call dein#add('jreybert/vimagit')
-call dein#add('airblade/vim-gitgutter')
-call dein#add('itchyny/lightline.vim')
-call dein#add('tpope/vim-surround')
-call dein#add('konfekt/FastFold')
-call dein#add('terryma/vim-multiple-cursors')
-call dein#add('elixir-lang/vim-elixir')
-call dein#add('elmcast/elm-vim')
-call dein#add('scrooloose/syntastic')
-" call dein#add('ryanoasis/vim-devicons')
-call dein#add('pangloss/vim-javascript')
-call dein#add('mxw/vim-jsx')
-call dein#add('w0ng/vim-hybrid')
-" call dein#add('gosukiwi/vim-atom-dark')
-if dein#check_install()
-  call dein#install()
-  let pluginExist=1
+if dein#load_state(expand('~/.config/nvim'))
+  call dein#begin(expand('~/.config/nvim'))
+  call dein#add('Shougo/dein.vim')
+  call dein#add('Shougo/vimproc', {'build': 'make -f make_mac.mak'})
+  call dein#add('Shougo/unite.vim')
+  call dein#add('Shougo/neomru.vim')
+  call dein#add('Shougo/vimfiler.vim')
+  " call dein#add('Shougo/deoplete.nvim')
+  " call dein#add('Shougo/neosnippet.vim')
+  " call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('elmcast/elm-vim')
+  call dein#add('tyru/caw.vim')
+  call dein#add('jreybert/vimagit')
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('tpope/vim-surround')
+  call dein#add('konfekt/FastFold')
+  call dein#add('terryma/vim-multiple-cursors')
+  " call dein#add('elixir-lang/vim-elixir')
+  call dein#add('elixir-editors/vim-elixir')
+  call dein#add('slashmili/alchemist.vim')
+  call dein#add('sheerun/vim-polyglot')
+  " call dein#add('scrooloose/syntastic')
+  " call dein#add('mtscout6/syntastic-local-eslint.vim')
+  call dein#add('w0rp/ale')
+  " call dein#add('ryanoasis/vim-devicons')
+  call dein#add('pangloss/vim-javascript')
+  call dein#add('w0ng/vim-hybrid')
+  " call dein#add('gosukiwi/vim-atom-dark')
+  call dein#add('fatih/vim-go')
+  call dein#end()
+  call dein#save_state()
 endif
-call dein#end()
-filetype plugin indent on
 
+filetype plugin indent on
 syntax on
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
 colorscheme hybrid
@@ -90,6 +97,7 @@ endfunction
 " }}}
 
 " vimfiler {{{
+let g:vimfiler_ignore_pattern = '^\%(.git\|.DS_Store\)$'
 nnoremap [vimfiler] <Nop>
 nmap <leader>f [vimfiler]
 nnoremap <silent> [vimfiler]f :VimFiler -split -simple -winwidth=40 -no-quit<cr>
@@ -112,33 +120,39 @@ let g:deoplete#enable_at_startup=1
 " }}}
 
 " syntastic {{{
-let g:syntastic_javascript_checkers=["eslint"]
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_poplulate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=1
-let g:syntastic_check_on_wq=0
-" let g:syntastic_mode_map = {'mode': 'passive'} 
-" augroup AutoSyntastic
-"     autocmd!
-"     autocmd InsertLeave,TextChanged * call s:syntastic() 
-" augroup END
-" function! s:syntastic()
-"     w
-"     SyntasticCheck
-" endfunction
+" let g:syntastic_javascript_checkers=["eslint"]
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_poplulate_loc_list=1
+" let g:syntastic_auto_loc_list=1
+" let g:syntastic_check_on_open=1
+" let g:syntastic_check_on_wq=0
 " }}}
 
-" vim-jsx {{{
-let g:jsx_ext_required=0
+" ale {{{
+set statusline+=%#warningmsg#
+set statusline+=%{ALEGetStatusLine()}
+set statusline+=%*
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+" let g:ale_lint_on_text_changed=0
+" let g:ale_set_loclist=0
+" let g:ale_set_quickfix=1
+let g:ale_open_list=1
+autocmd QuitPre * if empty(&bt) | lclose | endif
 " }}}
 
 " elm-vim {{{
 let g:polyglot_disabled = ['elm']
 let g:elm_detailed_complete=1
 let g:elm_format_autosave=1
-" let g:elm_setup_keybindings=0
-let g:elm_syntastic_show_warnings=1
+" let g:elm_syntastic_show_warnings=1
+let g:elm_format_fail_silently = 0
+let g:elm_setup_keybindings = 0
+" call deoplete#util#set_default(
+"   \ 'g:deoplete#omni#input_patterns',
+"   \ 'elm',
+"   \ '\.')
 " }}}
+
