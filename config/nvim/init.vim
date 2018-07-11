@@ -31,6 +31,14 @@ if dein#load_state(expand('~/.config/nvim'))
   call dein#add('w0ng/vim-hybrid')
   call dein#add('fatih/vim-go')
   call dein#add('elmcast/elm-vim')
+
+  " call dein#add('Shougo/deoplete.nvim')
+  " call dein#add('Shougo/defx.nvim')
+  " if !has('nvim')
+  "   call dein#add('roxma/nvim-yarp')
+  "   call dein#add('roxma/vim-hug-neovim-rpc')
+  " endif
+
   call dein#end()
   call dein#save_state()
 endif
@@ -84,38 +92,19 @@ if executable('ag')
 end
 " call denite#custom#source('file_rec', 'matchers', ['matcher_fuzzy', 'matcher_ignore_globs'])
 " call denite#custom#filter('matcher_ignore_globs', 'ignore_globs', [ '.git/', '_build/', 'images'])
-nnoremap <leader>f :Denite file<cr>
-nnoremap <leader>b :Denite buffer<cr>
+nnoremap <leader>f :Denite file -mode=normal<cr>
+nnoremap <leader>b :Denite buffer -mode=normal<cr>
 nnoremap <leader>m :Denite file_mru<cr>
 nnoremap <leader>r :Denite file_rec<cr>
 nnoremap <leader>g :Denite grep -mode=normal -buffer-name=search-buffer-denite<cr>
 call denite#custom#map('_', '|', '<denite:do_action:vsplit>', 'noremap')
+call denite#custom#map('insert', '<up>', '<denite:move_to_previous_line>', 'noremap')
+call denite#custom#map('insert', '<down>', '<denite:move_to_next_line>', 'noremap')
 " }}}
 
-" unite {{{
-" let s:unite_ignore_patterns='\.\(gif\|jpe\?g\|png\|webp\)$'
-" let g:unite_enable_start_insert=1
-" call unite#custom#source('file_rec/async', 'ignore_pattern', '_build/')
-" nnoremap <leader>f :Unite file<cr>
-" nnoremap <leader>r :Unite -force-redraw file_rec/async:!<cr>
-" nnoremap <leader>b :Unite buffer<cr>
-" nnoremap <leader>m :Unite file_mru<cr>
-" nnoremap <leader>i :<C-u>Unite file_rec/git:--cached:--others:--exclude-standard<CR>
-" nnoremap <leader>g :<C-u>Unite grep:. -buffer-name=search-buffer<cr>
-" nnoremap <silent><buffer><expr> | unite#do_action('vsplit')
-" if executable('ag')
-"   let g:unite_source_grep_command = 'ag'
-"   let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-"   let g:unite_source_grep_recursive_opt = ''
-"   let g:unite_source_rec_async_command = ['ag', '--follow', '--nocolor', '--nogroup', '--hidden', '-g', '']
-" endif
-" autocmd FileType unite call s:unite_settings()
-" function! s:unite_settings()
-"   nmap <silent><buffer> <esc><esc> q
-"   imap <silent><buffer> <esc><esc> <esc>q
-" endfunction
+" deoplete {{{
+" let g:deoplete#enable_at_startup = 1
 " }}}
-
 
 " caw {{{
 nmap <leader>c gcc
