@@ -72,7 +72,7 @@ hi ZenkakuSpace ctermbg=red guibg=#ff0000
 au BufNewFile,BufRead * match ZenkakuSpace /　/
 nnoremap Q <nop>
 map q <Nop>
-map <Esc><Esc> :noh<cr>
+map <leader>h :noh<cr>
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 map <c-h> <c-w>h
