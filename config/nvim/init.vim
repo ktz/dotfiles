@@ -2,7 +2,7 @@
 " if &compatible
 "   set nocompatible
 " endif
-let g:python3_host_prog = expand('/usr/local/bin//python3')
+" let g:python3_host_prog = expand('/usr/local/bin//python3')
 if (!isdirectory(expand('~/.config/nvim/repos/github.com/Shougo/dein.vim')))
   call system(expand('mkdir -p ~/.config/nvim/repos/github.com'))
   call system(expand('git clone https://github.com/Shougo/dein.vim ~/.config/nvim/repos/github.com/Shougo/dein.vim'))
@@ -20,15 +20,16 @@ if dein#load_state(expand('~/.config/nvim'))
   call dein#add('tyru/caw.vim')
   call dein#add('jreybert/vimagit')
   call dein#add('airblade/vim-gitgutter')
+  call dein#add('tpope/vim-fugitive')
   call dein#add('itchyny/lightline.vim')
   call dein#add('tpope/vim-surround')
   call dein#add('konfekt/FastFold')
   call dein#add('terryma/vim-multiple-cursors')
+  call dein#add('w0rp/ale')
+  call dein#add('w0ng/vim-hybrid')
   call dein#add('elixir-editors/vim-elixir')
   call dein#add('slashmili/alchemist.vim')
-  call dein#add('w0rp/ale')
   call dein#add('pangloss/vim-javascript')
-  call dein#add('w0ng/vim-hybrid')
   call dein#add('fatih/vim-go')
   call dein#add('elmcast/elm-vim')
 
@@ -142,3 +143,6 @@ let g:elm_setup_keybindings = 0
 "   \ '\.')
 " }}}
 
+" fugitive {{{
+nnoremap <leader>d :<C-u>Gdiff<cr>
+" }}}
