@@ -31,14 +31,17 @@ if dein#load_state(expand('~/.config/nvim'))
   call dein#add('slashmili/alchemist.vim')
   call dein#add('pangloss/vim-javascript')
   call dein#add('fatih/vim-go')
+  call dein#add('justmao945/vim-clang')
   call dein#add('elmcast/elm-vim')
 
+  call dein#add('Raimondi/delimitMate')
   " call dein#add('Shougo/deoplete.nvim')
-  " call dein#add('Shougo/defx.nvim')
-  " if !has('nvim')
-  "   call dein#add('roxma/nvim-yarp')
-  "   call dein#add('roxma/vim-hug-neovim-rpc')
-  " endif
+
+  call dein#add('Shougo/defx.nvim')
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
 
   call dein#end()
   call dein#save_state()
@@ -118,7 +121,8 @@ set statusline+=%{ALEGetStatusLine()}
 set statusline+=%*
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
-" let g:ale_lint_on_text_changed=0
+let g:ale_lint_on_save=1
+let g:ale_lint_on_text_changed=0
 " let g:ale_set_loclist=0
 " let g:ale_set_quickfix=1
 let g:ale_open_list=1
@@ -129,6 +133,15 @@ let g:ale_fixers['javascript'] = ['prettier-eslint']
 let g:ale_fix_on_save=1
 let g:ale_javascript_prittier_use_local_config=1
 " }}}
+
+" fugitive {{{
+" nnoremap <leader>d :<C-u>Gdiff<cr>
+" }}}
+"
+" vim-clang {{{
+let g:clang_c_options = '-std=gnu11'
+let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
+"}}}
 
 " elm-vim {{{
 let g:polyglot_disabled = ['elm']
@@ -143,6 +156,24 @@ let g:elm_setup_keybindings = 0
 "   \ '\.')
 " }}}
 
-" fugitive {{{
-nnoremap <leader>d :<C-u>Gdiff<cr>
+" defx {{{
+nnoremap <leader>d :Defx<cr>
+autocmd FileType defx call s:defx_my_settings()
+function! s:defx_my_settings() abort
+  nnoremap <silent><buffer><expr> <CR> defx#do_action('open')
+  nnoremap <silent><buffer><expr> l defx#do_action('open')
+  nnoremap <silent><buffer><expr> E defx#do_action('open', 'vsplit')
+  nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
+  nnoremap <silent><buffer><expr> N defx#do_action('new_file')
+  nnoremap <silent><buffer><expr> d defx#do_action('remove')
+  nnoremap <silent><buffer><expr> r defx#do_action('rename')
+  nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
+  nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
+  nnoremap <silent><buffer><expr> q defx#do_action('quit')
+  nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
+  nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
+  nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
+  nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
+  nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
+endfunction
 " }}}
