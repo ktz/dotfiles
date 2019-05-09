@@ -5,8 +5,8 @@ DIR="$( cd "$( dirname "$0" )" && pwd )"
 
 case $SHELL in
   */zsh)
-    ln -sf ./zshenv ~/.zshenv
-    ln -sf ./zshrc ~/.zshrc
+    ln -sf ${DIR}/zshenv ~/.zshenv
+    ln -sf ${DIR}/zshrc ~/.zshrc
     ;;
   */bash)
     ;;
