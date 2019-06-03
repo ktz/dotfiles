@@ -49,7 +49,10 @@ endif
 
 filetype plugin indent on
 syntax on
+set cursorline
 let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
+autocmd ColorScheme * highlight LineNr ctermfg=240
+autocmd ColorScheme * highlight CursorLineNr term=bold cterm=bold ctermfg=7
 colorscheme hybrid
 set mouse=
 set background=dark
@@ -94,13 +97,27 @@ if executable('ag')
   call denite#custom#var('grep', 'pattern_opt', [])
   call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
 end
+autocmd FileType denite call s:denite_my_settings()
+function! s:denite_my_settings() abort
+  " nnoremap <leader>f denite#do_map('open_filter_buffer')
+  " nnoremap <leader>q denite#do_map('quit')
+  nnoremap <silent><buffer><expr> <CR> denite#do_map('do_action')
+  nnoremap <silent><buffer><expr> d denite#do_map('do_action', 'delete')
+  nnoremap <silent><buffer><expr> p denite#do_map('do_action', 'preview')
+  nnoremap <silent><buffer><expr> q denite#do_map('quit')
+  nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
+  nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
+endfunction
 " call denite#custom#source('file_rec', 'matchers', ['matcher_fuzzy', 'matcher_ignore_globs'])
 " call denite#custom#filter('matcher_ignore_globs', 'ignore_globs', [ '.git/', '_build/', 'images'])
-nnoremap <leader>f :Denite file -mode=normal<cr>
-nnoremap <leader>b :Denite buffer -mode=normal<cr>
+nnoremap <leader>f :Denite file<cr>
+nnoremap <leader>b :Denite buffer<cr>
+" nnoremap <leader>f :Denite file -mode=normal<cr>
+" nnoremap <leader>b :Denite buffer -mode=normal<cr>
 nnoremap <leader>m :Denite file_mru<cr>
 nnoremap <leader>r :Denite file_rec<cr>
-nnoremap <leader>g :Denite grep -mode=normal -buffer-name=search-buffer-denite<cr>
+" nnoremap <leader>g :Denite grep -mode=normal -buffer-name=search-buffer-denite<cr>
+nnoremap <leader>g :Denite grep<cr>
 call denite#custom#map('_', '|', '<denite:do_action:vsplit>', 'noremap')
 call denite#custom#map('insert', '<up>', '<denite:move_to_previous_line>', 'noremap')
 call denite#custom#map('insert', '<down>', '<denite:move_to_next_line>', 'noremap')
@@ -108,12 +125,12 @@ call denite#custom#map('insert', '<down>', '<denite:move_to_next_line>', 'norema
 let s:denite_win_width_percent = 0.8
 let s:denite_win_height_percent = 0.6
 call denite#custom#option('default', {
-    \ 'split': 'floating',
-    \ 'winwidth': &columns * s:denite_win_width_percent,
-    \ 'wincol': (&columns - (&columns * s:denite_win_width_percent)) / 2,
-    \ 'winheight': &lines * s:denite_win_height_percent,
-    \ 'winrow': (&lines - (&lines * s:denite_win_height_percent)) / 2,
-    \ })
+  \ 'split': 'floating',
+  \ 'winwidth': &columns * s:denite_win_width_percent,
+  \ 'wincol': (&columns - (&columns * s:denite_win_width_percent)) / 2,
+  \ 'winheight': &lines * s:denite_win_height_percent,
+  \ 'winrow': (&lines - (&lines * s:denite_win_height_percent)) / 2,
+  \ })
 " }}}
 
 " deoplete {{{
