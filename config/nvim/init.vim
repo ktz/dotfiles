@@ -91,7 +91,8 @@ augroup END
 
 " denite {{{
 if executable('ag')
-  call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--no-color', '--no-group', '-g', ''])
+  " call denite#custom#var('file_rec', 'command', ['ag', '--follow', '--no-color', '--no-group', '-g', ''])
+  call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--no-color', '--no-group', '-g', ''])
   call denite#custom#var('grep', 'command', ['ag'])
   call denite#custom#var('grep', 'recursive_opts', [])
   call denite#custom#var('grep', 'pattern_opt', [])
@@ -115,7 +116,8 @@ nnoremap <leader>b :Denite buffer<cr>
 " nnoremap <leader>f :Denite file -mode=normal<cr>
 " nnoremap <leader>b :Denite buffer -mode=normal<cr>
 nnoremap <leader>m :Denite file_mru<cr>
-nnoremap <leader>r :Denite file_rec<cr>
+" nnoremap <leader>r :Denite file_rec<cr>
+nnoremap <leader>r :Denite file/rec<cr>
 " nnoremap <leader>g :Denite grep -mode=normal -buffer-name=search-buffer-denite<cr>
 nnoremap <leader>g :Denite grep<cr>
 call denite#custom#map('_', '|', '<denite:do_action:vsplit>', 'noremap')
