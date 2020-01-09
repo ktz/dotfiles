@@ -1,20 +1,11 @@
-#!/bin/bash
+#!/bin/sh -eu
 
-set -eu
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 
-case $SHELL in
-  */zsh)
-    ln -sf ${DIR}/zshenv ~/.zshenv
-    ln -sf ${DIR}/zshrc ~/.zshrc
-    ;;
-  */bash)
-    ;;
-  *)
-esac
-
-ln -sf ${DIR}/tmux.conf ~/.tmux.conf
-ln -sf ${DIR}/inputrc ~/.inputrc
+ln -sf ${DIR}/zshenv ${HOME}/.zshenv
+ln -sf ${DIR}/zshrc ${HOME}/.zshrc
+ln -sf ${DIR}/tmux.conf ${HOME}/.tmux.conf
+ln -sf ${DIR}/inputrc ${HOME}/.inputrc
 
 which nvim > /dev/null 2>&1
 if [ $? -eq 0 ]; then
@@ -25,3 +16,4 @@ if [ $? -eq 0 ]; then
 else
   cp ${DIR}/config/nvim/init.vim ~/.vimrc
 fi
+
