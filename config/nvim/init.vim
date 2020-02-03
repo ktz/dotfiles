@@ -79,15 +79,6 @@ augroup AutoCmd
 augroup END
 
 " denite {{{
-" let s:denite_win_width_percent = 0.8
-" let s:denite_win_height_percent = 0.6
-" call denite#custom#option('default', {
-"  \ 'split': 'floating',
-"  \ 'winwidth': &columns * s:denite_win_width_percent,
-"  \ 'wincol': (&columns - (&columns * s:denite_win_width_percent)) / 2,
-"  \ 'winheight': &lines * s:denite_win_height_percent,
-"  \ 'winrow': (&lines - (&lines * s:denite_win_height_percent)) / 2,
-"  \ })
 let s:denite_options = {
       \ 'prompt' : '>',
       \ 'split': 'floating',
@@ -112,8 +103,7 @@ function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> i denite#do_map('open_filter_buffer')
   nnoremap <silent><buffer><expr> <Space> denite#do_map('toggle_select').'j'
 endfunction
-" call denite#custom#source('file_rec', 'matchers', ['matcher_fuzzy', 'matcher_ignore_globs'])
-" call denite#custom#filter('matcher_ignore_globs', 'ignore_globs', [ '.git/', '_build/', 'images'])
+
 nnoremap <leader>f :Denite file<cr>
 nnoremap <leader>b :Denite buffer<cr>
 nnoremap <leader>m :Denite file_mru<cr>
@@ -136,16 +126,19 @@ function! s:denite_filter_my_settings() abort
 endfunction
 
 if executable('ag')
-  call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--no-color', '--no-group', '-g', ''])
-  call denite#custom#var('grep', 'command', ['ag'])
-  call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'pattern_opt', [])
-  call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
+"   call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--no-color', '--no-group', '-g', ''])
+"   " call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--no-color', '--no-group', '-g', '', '-E', 'vendor/'])
+"   call denite#custom#var('grep', 'command', ['ag'])
+"   call denite#custom#var('grep', 'recursive_opts', [])
+"   call denite#custom#var('grep', 'pattern_opt', [])
+"   call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
+" " call denite#custom#source('file_rec', 'matchers', ['matcher_fuzzy', 'matcher/ignore_globs'])
+" call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', [ '.git/', '_build/', 'images/', 'vendor/'])
+  let s:ignore_globs = ['.git', '_build', 'images', 'vendor']
+  call denite#custom#var('file/rec', 'command', ['ag', '--follow'] + map(deepcopy(s:ignore_globs), { k, v -> '--ignore=' . v }) + ['--nocolor', '--nogroup', '-g', ''])
+  call denite#custom#source('file/rec', 'matchers', ['matcher_fuzzy'])
+  call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', s:ignore_globs)
 end
-" }}}
-
-" deoplete {{{
-" let g:deoplete#enable_at_startup = 1
 " }}}
 
 " caw {{{
@@ -188,10 +181,6 @@ let g:elm_format_autosave=1
 " let g:elm_syntastic_show_warnings=1
 let g:elm_format_fail_silently = 0
 let g:elm_setup_keybindings = 0
-" call deoplete#util#set_default(
-"   \ 'g:deoplete#omni#input_patterns',
-"   \ 'elm',
-"   \ '\.')
 " }}}
 
 " defx {{{
@@ -286,8 +275,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Remap for format selected region
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
