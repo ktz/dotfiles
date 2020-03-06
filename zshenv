@@ -12,6 +12,3 @@ export LC_ALL=
 
 export XDG_CONFIG_HOME="~/.config"
 
-export GOPATH=$HOME/.go
-export GOROOT=/usr/local/opt/go/libexec
-export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
