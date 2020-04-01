@@ -74,9 +74,9 @@ map <c-k> <c-w>k
 map <c-h> <c-w>h
 map <c-l> <c-w>l
 
-augroup AutoCmd
-  autocmd!
-augroup END
+" augroup AutoCmd
+"   autocmd!
+" augroup END
 
 " denite {{{
 let s:denite_options = {
@@ -208,6 +208,12 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
   nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
 endfunction
+" }}}
+
+" vim-go {{{
+let g:go_fmt_command = "goimports"
+let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
 " }}}
 
 " coc {{{
