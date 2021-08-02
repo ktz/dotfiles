@@ -29,6 +29,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('fatih/vim-go')
   call dein#add('justmao945/vim-clang')
   call dein#add('elmcast/elm-vim')
+  call dein#add('evanleck/vim-svelte')
   call dein#add('Raimondi/delimitMate')
   call dein#add('Shougo/defx.nvim')
   call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
@@ -66,6 +67,7 @@ set nobackup
 set visualbell t_vb=
 hi ZenkakuSpace ctermbg=red guibg=#ff0000
 au BufNewFile,BufRead * match ZenkakuSpace /　/
+" let mapleader = "\<Space>"
 nnoremap Q <nop>
 map q <Nop>
 map <leader>h :noh<cr>
@@ -216,6 +218,11 @@ let g:go_def_mapping_enabled = 0
 let g:go_doc_keywordprg_enabled = 0
 " }}}
 
+" vim-svelte {{{
+let g:svelte_indent_script = 0
+let g:svelte_indent_style = 0
+" }}}
+
 " coc {{{
 " if hidden is not set, TextEdit might fail.
 set hidden
@@ -334,7 +341,7 @@ nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
 " Manage extensions
 nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
 " Show commands
-nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
+" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 " Find symbol of current document
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
