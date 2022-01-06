@@ -2,21 +2,20 @@
 
 DIR="$( cd "$( dirname "$0" )" && pwd )"
 
-ln -sf ${DIR}/zshenv ${HOME}/.zshenv
-ln -sf ${DIR}/zshrc ${HOME}/.zshrc
-ln -sf ${DIR}/tmux.conf ${HOME}/.tmux.conf
-ln -sf ${DIR}/inputrc ${HOME}/.inputrc
+ln -sf ${DIR}/zsh/.zshenv ${HOME}/.zshenv
+ln -sf ${DIR}/zsh/.zshrc ${HOME}/.zshrc
+ln -sf ${DIR}/tmux/.tmux.conf ${HOME}/.tmux.conf
 
 if [ ! -d ~/.config/nvim ]; then
   mkdir -p ~/.config/nvim
 fi
-ln -sf ${DIR}/config/nvim/init.lua ~/.config/nvim/init.lua
+ln -sf ${DIR}/neovim/.config/nvim/init.lua ~/.config/nvim/init.lua
 if [ ! -d ~/.config/nvim/lua ]; then
   mkdir -p ~/.config/nvim/lua
 fi
-ln -sf ${DIR}/config/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
+ln -sf ${DIR}/neovim/.config/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
 
 if [ ! -d ~/.config/kitty ]; then
   mkdir -p ~/.config/kitty
 fi
-ln -sf ${DIR}/config/kitty/kitty.conf ~/.config/kitty/kitty.conf
+ln -sf ${DIR}/kitty/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
