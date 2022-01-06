@@ -12,3 +12,7 @@ if [ ! -d ~/.config/nvim ]; then
 fi
 ln -sf ${DIR}/config/nvim/init.lua ~/.config/nvim/init.lua
 
+if [ ! -d ~/.config/kitty ]; then
+  mkdir -p ~/.config/kitty
+fi
+ln -sf ${DIR}/config/kitty/kitty.conf ~/.config/kitty/kitty.conf
