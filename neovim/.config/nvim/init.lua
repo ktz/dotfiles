@@ -246,6 +246,14 @@ local no_really = {
 null_ls.register(no_really)
 
 
+local trouble = require('trouble')
+trouble.setup {
+  mode = "workspace_diagnostics", -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
+  auto_open = true,
+  auto_close = true,
+  use_diagnostic_signs = true
+}
+
 local nightfox = require('nightfox')
 nightfox.setup {
   fox = 'nightfox',
