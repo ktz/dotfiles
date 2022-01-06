@@ -1,96 +1,88 @@
-if &compatible
-  set nocompatible
-endif
+vim.cmd[[packadd packer.nvim]]
+require('packer').startup(function(use)
+  use {
+    'wbthomason/packer.nvim',
+    opt = true
+  }
+  use 'roxma/nvim-yarp'
+  use 'roxma/vim-hug-neovim-rpc'
+  use 'Shougo/denite.nvim'
+  use 'Shougo/neomru.vim'
+  use {
+    'kyazdani42/nvim-tree.lua',
+    config = function() require'nvim-tree'.setup {} end
+  }
+  use 'tpope/vim-commentary'
+  use 'jreybert/vimagit'
+  use 'airblade/vim-gitgutter'
+  use 'tpope/vim-fugitive'
+  use 'EdenEast/nightfox.nvim'
+  use 'nvim-lualine/lualine.nvim'
+  use 'tpope/vim-surround'
+  use 'terryma/vim-multiple-cursors'
+  use 'Raimondi/delimitMate'
+  use 'neovim/nvim-lspconfig'
+  use 'williamboman/nvim-lsp-installer'
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate'
+  }
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use 'hrsh7th/nvim-cmp'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-vsnip'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/vim-vsnip'
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+    requires = {'nvim-lua/plenary.nvim'}
+  }
+end)
 
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim/
+-- require'plugins'
+-- vim.cmd[[autocmd BufWritePost plugins.lua PackerCompile]]
+vim.cmd[[command! PackerInstall packadd packer.nvim | lua require'packer'.install()]]
+vim.cmd[[command! PackerUpdate packadd packer.nvim | lua require'packer'.update()]]
+vim.cmd[[command! PackerSync packadd packer.nvim | lua require'packer'.sync()]]
+vim.cmd[[command! PackerClean packadd packer.nvim | lua require'packer'.clean()]]
+vim.cmd[[command! PackerCompile packadd packer.nvim | lua require'packer'.compile()]]
 
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
-  call dein#add('Shougo/neomru.vim')
-  call dein#add('Shougo/denite.nvim')
-  call dein#add('tyru/caw.vim')
-  call dein#add('jreybert/vimagit')
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('tpope/vim-surround')
-  call dein#add('konfekt/FastFold')
-  call dein#add('terryma/vim-multiple-cursors')
-  call dein#add('w0rp/ale')
-  call dein#add('w0ng/vim-hybrid')
-  call dein#add('elixir-editors/vim-elixir')
-  call dein#add('slashmili/alchemist.vim')
-  call dein#add('pangloss/vim-javascript')
-  call dein#add('fatih/vim-go')
-  call dein#add('justmao945/vim-clang')
-  call dein#add('elmcast/elm-vim')
-  call dein#add('evanleck/vim-svelte')
-  call dein#add('Raimondi/delimitMate')
-  call dein#add('Shougo/defx.nvim')
-  call dein#add('neoclide/coc.nvim', {'merged': 0, 'rev': 'release'})
-  call dein#end()
-  call dein#save_state()
-endif
 
-filetype plugin indent on
-syntax on
-set cursorline
-let $NVIM_TUI_ENABLE_TRUE_COLOR = 1
-autocmd ColorScheme * highlight LineNr ctermfg=240
-autocmd ColorScheme * highlight CursorLineNr term=bold cterm=bold ctermfg=7
-colorscheme hybrid
-set mouse=
-set background=dark
-set clipboard+=unnamedplus
-set noswapfile
-set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-set wildmenu
-set wildmode=full
-set laststatus=2
-set number
-set smartcase
-set wrapscan
-set list
-set listchars=eol:¬,tab:▸\
-set hlsearch
-set smartindent
-set showcmd
-set backspace=indent,eol,start
-set autoread
-set nobackup
-" set cursorline
-set visualbell t_vb=
+vim.cmd[[
 hi ZenkakuSpace ctermbg=red guibg=#ff0000
 au BufNewFile,BufRead * match ZenkakuSpace /　/
-" let mapleader = "\<Space>"
-nnoremap Q <nop>
-map q <Nop>
-map <leader>h :noh<cr>
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-h> <c-w>h
-map <c-l> <c-w>l
+autocmd BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
+]]
+vim.o.smartcase = true
+vim.o.smartindent = true
+vim.o.backup = false
+vim.o.swapfile = false
+-- vim.o.list = true
+-- vim.o.listchars = 'eol:¬,tab:▸\\'
+-- vim.cmd[[set clipboard+=unnameplus]]
+vim.o.clipboard = 'unnamedplus'
+vim.wo.number = true
+vim.wo.cursorline = true
+vim.bo.tabstop = 2
+vim.bo.shiftwidth = 2
+vim.bo.softtabstop = 2
+vim.bo.expandtab = true
+vim.api.nvim_set_keymap('n', 'Q', '<nop>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'q', ':noh<cr>', {noremap = true, silent = true})
 
-" augroup AutoCmd
-"   autocmd!
-" augroup END
 
-" denite {{{
+vim.cmd[[
+" denite
 let s:denite_options = {
-      \ 'prompt' : '>',
-      \ 'split': 'floating',
-      \ 'start_filter': 1,
-      \ 'auto_resize': 1,
-      \ 'source_names': 'short',
-      \ 'direction': 'botright',
-      \ 'highlight_filter_background': 'CursorLine',
-      \ 'highlight_matched_char': 'Type',
-      \ }
+     \ 'prompt' : '>',
+     \ 'split': 'floating',
+     \ 'start_filter': 1,
+     \ 'auto_resize': 1,
+     \ 'source_names': 'short',
+     \ 'direction': 'botright',
+     \ 'highlight_filter_background': 'CursorLine',
+     \ 'highlight_matched_char': 'Type',
+     \ }
 call denite#custom#option('default', s:denite_options)
 
 autocmd FileType denite call s:denite_my_settings()
@@ -128,17 +120,16 @@ function! s:denite_filter_my_settings() abort
 endfunction
 
 if executable('ag')
-"   call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--no-color', '--no-group', '-g', ''])
+  call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--no-color', '--no-group', '-g', ''])
 "   " call denite#custom#var('file/rec', 'command', ['ag', '--follow', '--no-color', '--no-group', '-g', '', '-E', 'vendor/'])
-"   call denite#custom#var('grep', 'command', ['ag'])
-"   call denite#custom#var('grep', 'recursive_opts', [])
-"   call denite#custom#var('grep', 'pattern_opt', [])
-"   call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
+  call denite#custom#var('grep', 'command', ['ag'])
+  call denite#custom#var('grep', 'recursive_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', [])
+  call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
 " " call denite#custom#source('file_rec', 'matchers', ['matcher_fuzzy', 'matcher/ignore_globs'])
-" call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', [ '.git/', '_build/', 'images/', 'vendor/'])
+  call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', [ '.git/', '_build/', 'images/', 'vendor/'])
   let s:ignore_globs = ['.git', '_build', 'images', 'vendor', 'node_modules']
   call denite#custom#var('file/rec', 'command', ['ag', '--follow'] + map(deepcopy(s:ignore_globs), { k, v -> '--ignore=' . v }) + ['--nocolor', '--nogroup', '-g', ''])
-  " call denite#custom#source('file/rec', 'matchers', ['matcher_fuzzy'])
   call denite#custom#source('file/rec', 'matchers', ['matcher_fuzzy', 'matcher/ignore_globs'])
   call denite#custom#filter('matcher/ignore_globs', 'ignore_globs', s:ignore_globs)
   call denite#custom#var('grep', 'command', ['ag'])
@@ -146,212 +137,178 @@ if executable('ag')
   call denite#custom#var('grep', 'pattern_opt', [])
   call denite#custom#var('grep', 'default_opts', ['--follow', '--no-group', '--no-color'])
 end
-" }}}
+]]
 
-" caw {{{
-nmap <leader>c gcc
-vmap <leader>c gcc
-" }}}
-"
-" ale {{{
-set statusline+=%#warningmsg#
-set statusline+=%{ALEGetStatusLine()}
-set statusline+=%*
-nmap <silent> <C-k> <Plug>(ale_previous_wrap)
-nmap <silent> <C-j> <Plug>(ale_next_wrap)
-let g:ale_lint_on_save=1
-let g:ale_lint_on_text_changed=0
-" let g:ale_set_loclist=0
-" let g:ale_set_quickfix=1
-let g:ale_open_list=1
-autocmd QuitPre * if empty(&bt) | lclose | endif
 
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier-eslint']
-let g:ale_fix_on_save=1
-let g:ale_javascript_prittier_use_local_config=1
-" }}}
+-- vim-commentary {{{
+vim.api.nvim_set_keymap('n', '<leader>c', 'gcc', {noremap = false, silent = true})
+vim.api.nvim_set_keymap('v', '<leader>c', 'gc', {noremap = false, silent = true})
+-- }}}
 
-" fugitive {{{
-" nnoremap <leader>d :<C-u>Gdiff<cr>
-" }}}
-"
-" vim-clang {{{
-let g:clang_c_options = '-std=gnu11'
-let g:clang_cpp_options = '-std=c++11 -stdlib=libc++'
-"}}}
 
-" elm-vim {{{
-let g:polyglot_disabled = ['elm']
-let g:elm_detailed_complete=1
-let g:elm_format_autosave=1
-" let g:elm_syntastic_show_warnings=1
-let g:elm_format_fail_silently = 0
-let g:elm_setup_keybindings = 0
-" }}}
+-- nvim-tree {{{
+vim.g.nvim_tree_show_icons = { git = 0, folders = 0, files = 0, folder_arrows = 0 }
+vim.api.nvim_set_keymap('n', '<leader>d', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>u', ':NvimTreeRefresh<CR>', {noremap = true, silent = true})
+-- }}}
 
-" defx {{{
-nnoremap <leader>d :Defx<cr>
-autocmd FileType defx call s:defx_my_settings()
-function! s:defx_my_settings() abort
-  nnoremap <silent><buffer><expr> <CR> defx#do_action('open')
-  nnoremap <silent><buffer><expr> l defx#do_action('open')
-  nnoremap <silent><buffer><expr> E defx#do_action('open', 'vsplit')
-  nnoremap <silent><buffer><expr> K defx#do_action('new_directory')
-  nnoremap <silent><buffer><expr> N defx#do_action('new_file')
-  nnoremap <silent><buffer><expr> d defx#do_action('remove')
-  nnoremap <silent><buffer><expr> r defx#do_action('rename')
-  nnoremap <silent><buffer><expr> h defx#do_action('cd', ['..'])
-  nnoremap <silent><buffer><expr> ~ defx#do_action('cd')
-  nnoremap <silent><buffer><expr> q defx#do_action('quit')
-  nnoremap <silent><buffer><expr> <Space> defx#do_action('toggle_select') . 'j'
-  nnoremap <silent><buffer><expr> j line('.') == line('$') ? 'gg' : 'j'
-  nnoremap <silent><buffer><expr> k line('.') == 1 ? 'G' : 'k'
-  nnoremap <silent><buffer><expr> <C-l> defx#do_action('redraw')
-  nnoremap <silent><buffer><expr> <C-g> defx#do_action('print')
+
+require('nvim-lsp-installer').on_server_ready(function(server)
+  local on_attach = function(client, bufnr)
+    local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+    local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+    buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+    local opts = { noremap=true, silent=true }
+    buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+    buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+    buf_set_keymap('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+    buf_set_keymap('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+    buf_set_keymap('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    buf_set_keymap('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+    buf_set_keymap('n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+    buf_set_keymap('n', '<space>e', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    buf_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+    buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+    buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
+    buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  end
+  local enhance_server_opts = {
+    ["elixirls"] = function(opts)
+      opts.settings = {
+        elixirLS = {
+          dialyzerEnabled = false,
+          fetchDeps = false
+        }
+      }
+    end,
+    ["sumneko_lua"] = function(opts)
+      opts.cmd = { '/Users/' .. vim.fn.expand('$USER') .. '/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/macOS/lua-language-server' }
+      opts.settings = {
+        Lua = {
+          diagnostics = {
+            globals = {'vim'}
+          }
+        }
+      }
+    end,
+  }
+  local opts = {}
+  opts.on_attach = on_attach
+  opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+  if enhance_server_opts[server.name] then
+    enhance_server_opts[server.name](opts)
+  end
+
+  server:setup(opts)
+
+end)
+
+
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+    disable = {}
+  },
+  indent = {
+    enable = true,
+  },
+  ensure_installed = 'maintained',
+}
+
+
+local cmp = require"cmp"
+vim.opt.completeopt = "menu,menuone,noselect"
+cmp.setup({
+  snippet = {
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = {
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+    { name = "vsnip" },
+  }, {
+    { name = "buffer" },
+  })
+})
+
+
+local null_ls = require("null-ls")
+null_ls.setup({
+  on_attach = function(client)
+    if client.resolved_capabilities.document_formatting then
+      vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+    end
+  end,
+  sources = {
+    require('null-ls').builtins.formatting.prettier,
+    require('null-ls').builtins.diagnostics.eslint,
+  },
+})
+local no_really = {
+    method = null_ls.methods.DIAGNOSTICS,
+    filetypes = { "markdown", "txt" },
+    generator = {
+        fn = function(params)
+            local diagnostics = {}
+            -- sources have access to a params object
+            -- containing info about the current file and editor state
+            for i, line in ipairs(params.content) do
+                local col, end_col = line:find("really")
+                if col and end_col then
+                    -- null-ls fills in undefined positions
+                    -- and converts source diagnostics into the required format
+                    table.insert(diagnostics, {
+                        row = i,
+                        col = col,
+                        end_col = end_col,
+                        source = "no-really",
+                        message = "Don't use 'really!'",
+                        severity = 2,
+                    })
+                end
+            end
+            return diagnostics
+        end,
+    },
+}
+null_ls.register(no_really)
+
+
+local nightfox = require('nightfox')
+nightfox.setup {
+  fox = 'nightfox',
+  transparent = true
+}
+nightfox.load()
+
+
+local lualine = require('lualine')
+lualine.setup {
+  options = {
+    theme = 'nightfox',
+    icons_enabled = false,
+    icon = nil
+  }
+}
+
+vim.cmd[[
+command! Profile call s:command_profile()
+function! s:command_profile() abort
+  profile start ~/Desktop/profile.txt
+  profile func *
+  profile file *
 endfunction
-" }}}
-
-" vim-go {{{
-let g:go_fmt_command = "goimports"
-let g:go_def_mapping_enabled = 0
-let g:go_doc_keywordprg_enabled = 0
-" }}}
-
-" vim-svelte {{{
-let g:svelte_indent_script = 0
-let g:svelte_indent_style = 0
-" }}}
-
-" coc {{{
-" if hidden is not set, TextEdit might fail.
-set hidden
-
-" Some servers have issues with backup files, see #649
-set nobackup
-set nowritebackup
-
-" Better display for messages
-set cmdheight=2
-
-" You will have bad experience for diagnostic messages when it's default 4000.
-set updatetime=300
-
-" don't give |ins-completion-menu| messages.
-set shortmess+=c
-
-" always show signcolumns
-set signcolumn=yes
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-
-" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
-" Coc only does snippet and additional edit on confirm.
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" Or use `complete_info` if your vim support it, like:
-" inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" Remap keys for gotos
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" Highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Remap for rename current word
-nmap <leader>rn <Plug>(coc-rename)
-
-" Remap for format selected region
-" xmap <leader>f  <Plug>(coc-format-selected)
-" nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
-" Use <C-d> for select selections ranges, needs server support, like: coc-tsserver, coc-python
-nmap <silent> <C-d> <Plug>(coc-range-select)
-xmap <silent> <C-d> <Plug>(coc-range-select)
-
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add status line support, for integration with other plugin, checkout `:h coc-status`
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Using CocList
-" Show all diagnostics
-nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions
-nnoremap <silent> <space>e  :<C-u>CocList extensions<cr>
-" Show commands
-" nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document
-nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols
-nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-" }}}
-
-autocmd BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
+]]

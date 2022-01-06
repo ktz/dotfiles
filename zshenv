@@ -10,3 +10,4 @@ export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 export LC_ALL=
 
+export XDG_CONFIG_HOME=$HOME/.config

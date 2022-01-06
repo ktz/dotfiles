@@ -1,12 +1,19 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export PATH=/usr/local/bin/:$PATH
  
-PROMPT="%{[31m%}%n@%m${WINDOW:+"[$WINDOW]"}
-%%%{[m%} "
-PROMPT2="%{[31m%}%_%%%{[m%} "
-RPROMPT="%{[31m%}[%~]%{[m%} "
-SPROMPT="%{[36m%}%r is correct? [n,y,a,e]:%{[m%} "
-[ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
-    PROMPT="%{[36m%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
+# PROMPT="%{[31m%}%n@%m${WINDOW:+"[$WINDOW]"}
+# %%%{[m%} "
+# PROMPT2="%{[31m%}%_%%%{[m%} "
+# RPROMPT="%{[31m%}[%~]%{[m%} "
+# SPROMPT="%{[36m%}%r is correct? [n,y,a,e]:%{[m%} "
+# [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] &&
+#     PROMPT="%{[36m%}$(echo ${HOST%%.*} | tr '[a-z]' '[A-Z]') ${PROMPT}"
  
 setopt auto_cd
 setopt auto_pushd
@@ -65,3 +72,7 @@ alias tmux="tmux -u"
 alias crontab="EDITOR=nano crontab"
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 
+source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
