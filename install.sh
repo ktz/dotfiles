@@ -11,6 +11,10 @@ if [ ! -d ~/.config/nvim ]; then
   mkdir -p ~/.config/nvim
 fi
 ln -sf ${DIR}/config/nvim/init.lua ~/.config/nvim/init.lua
+if [ ! -d ~/.config/nvim/lua ]; then
+  mkdir -p ~/.config/nvim/lua
+fi
+ln -sf ${DIR}/config/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
 
 if [ ! -d ~/.config/kitty ]; then
   mkdir -p ~/.config/kitty
