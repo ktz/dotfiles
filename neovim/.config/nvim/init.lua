@@ -22,10 +22,12 @@ vim.o.swapfile = false
 vim.o.clipboard = 'unnamedplus'
 vim.wo.number = true
 vim.wo.cursorline = true
-vim.bo.tabstop = 2
-vim.bo.shiftwidth = 2
-vim.bo.softtabstop = 2
-vim.bo.expandtab = true
+
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
+vim.o.expandtab = true
+
 vim.api.nvim_set_keymap('n', 'Q', '<nop>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'q', ':noh<cr>', {noremap = true, silent = true})
 
@@ -135,6 +137,9 @@ require('nvim-lsp-installer').on_server_ready(function(server)
     buf_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
     buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
     buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
   end
   local enhance_server_opts = {
     ["elixirls"] = function(opts)
@@ -212,38 +217,21 @@ null_ls.setup({
     end
   end,
   sources = {
-    require('null-ls').builtins.formatting.prettier,
-    require('null-ls').builtins.diagnostics.eslint,
+    null_ls.builtins.formatting.clang_format,
+    -- null_ls.builtins.formatting.eslint_d,
+    null_ls.builtins.formatting.gofmt,
+    null_ls.builtins.formatting.goimports,
+    null_ls.builtins.formatting.mix,
+    null_ls.builtins.formatting.prettier.with({
+      extra_filetypes = {'svelte'}
+    }),
+    null_ls.builtins.diagnostics.cppcheck,
+    null_ls.builtins.diagnostics.credo,
+    null_ls.builtins.diagnostics.eslint_d,
+    null_ls.builtins.diagnostics.hadolint,
+    null_ls.builtins.code_actions.eslint_d
   },
 })
-local no_really = {
-    method = null_ls.methods.DIAGNOSTICS,
-    filetypes = { "markdown", "txt" },
-    generator = {
-        fn = function(params)
-            local diagnostics = {}
-            -- sources have access to a params object
-            -- containing info about the current file and editor state
-            for i, line in ipairs(params.content) do
-                local col, end_col = line:find("really")
-                if col and end_col then
-                    -- null-ls fills in undefined positions
-                    -- and converts source diagnostics into the required format
-                    table.insert(diagnostics, {
-                        row = i,
-                        col = col,
-                        end_col = end_col,
-                        source = "no-really",
-                        message = "Don't use 'really!'",
-                        severity = 2,
-                    })
-                end
-            end
-            return diagnostics
-        end,
-    },
-}
-null_ls.register(no_really)
 
 
 local trouble = require('trouble')
