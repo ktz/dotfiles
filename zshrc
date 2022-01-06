@@ -71,6 +71,7 @@ fi
 alias tmux="tmux -u"
 alias crontab="EDITOR=nano crontab"
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+eval "$(anyenv init -)"
 
 source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 
