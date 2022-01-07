@@ -47,6 +47,7 @@ esac
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
  
+export EDITOR=nvim
 # precmd() {
 #     echo -ne "\033]0;${USER}@${HOST%%.*}:${PWD}\007"
 # }
@@ -58,7 +59,7 @@ export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30
 # fi
 
 alias tmux="tmux -u"
-alias crontab="EDITOR=nano crontab"
+# alias crontab="EDITOR=nano crontab"
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 eval "$(anyenv init -)"
 
