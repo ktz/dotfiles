@@ -31,9 +31,15 @@ vim.o.expandtab = true
 vim.api.nvim_set_keymap('n', 'Q', '<nop>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'q', ':noh<cr>', {noremap = true, silent = true})
 
+local nightfox = require('nightfox')
+nightfox.setup({
+  fox = 'nightfox',
+  transparent = true
+})
+nightfox.load()
 
+-- denite
 vim.cmd[[
-" denite
 let s:denite_options = {
      \ 'prompt' : '>',
      \ 'split': 'floating',
@@ -101,19 +107,23 @@ end
 ]]
 
 
--- vim-commentary {{{
+-- vim-commentary
 vim.api.nvim_set_keymap('n', '<leader>c', 'gcc', {noremap = false, silent = true})
 vim.api.nvim_set_keymap('v', '<leader>c', 'gc', {noremap = false, silent = true})
--- }}}
 
 
--- nvim-tree {{{
+-- nvim-tree
 vim.g.nvim_tree_show_icons = { git = 0, folders = 0, files = 0, folder_arrows = 0 }
 vim.api.nvim_set_keymap('n', '<leader>d', ':NvimTreeToggle<CR>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>u', ':NvimTreeRefresh<CR>', {noremap = true, silent = true})
--- }}}
 
 
+-- hop.nvim
+vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char2()<cr>", {})
+vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({current_line_only = true})<cr>", {})
+
+
+-- nvim-lspconfig, nvim-lsp-installer
 require('nvim-lsp-installer').on_server_ready(function(server)
   local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -173,91 +183,66 @@ require('nvim-lsp-installer').on_server_ready(function(server)
 end)
 
 
-require'nvim-treesitter.configs'.setup {
-  highlight = {
-    enable = true,
-    disable = {}
-  },
-  indent = {
-    enable = true,
-  },
-  ensure_installed = 'maintained',
-}
+-- require'nvim-treesitter.configs'.setup {
+--   highlight = {
+--     enable = true,
+--     disable = {}
+--   },
+--   indent = {
+--     enable = true,
+--   },
+--   ensure_installed = 'maintained',
+-- }
 
 
-local cmp = require"cmp"
-vim.opt.completeopt = "menu,menuone,noselect"
-cmp.setup({
-  snippet = {
-    expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body)
-    end,
-  },
-  mapping = {
-    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-    ["<C-f>"] = cmp.mapping.scroll_docs(4),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm({ select = true }),
-  },
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "vsnip" },
-  }, {
-    { name = "buffer" },
-  })
-})
+-- local cmp = require"cmp"
+-- vim.opt.completeopt = "menu,menuone,noselect"
+-- cmp.setup({
+--   snippet = {
+--     expand = function(args)
+--       vim.fn["vsnip#anonymous"](args.body)
+--     end,
+--   },
+--   mapping = {
+--     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+--     ["<C-f>"] = cmp.mapping.scroll_docs(4),
+--     ["<C-Space>"] = cmp.mapping.complete(),
+--     ["<C-e>"] = cmp.mapping.close(),
+--     ["<CR>"] = cmp.mapping.confirm({ select = true }),
+--   },
+--   sources = cmp.config.sources({
+--     { name = "nvim_lsp" },
+--     { name = "vsnip" },
+--   }, {
+--     { name = "buffer" },
+--   })
+-- })
 
 
-local null_ls = require("null-ls")
-null_ls.setup({
-  on_attach = function(client)
-    if client.resolved_capabilities.document_formatting then
-      vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-    end
-  end,
-  sources = {
-    null_ls.builtins.formatting.clang_format,
-    -- null_ls.builtins.formatting.eslint_d,
-    null_ls.builtins.formatting.gofmt,
-    null_ls.builtins.formatting.goimports,
-    null_ls.builtins.formatting.mix,
-    null_ls.builtins.formatting.prettier.with({
-      extra_filetypes = {'svelte'}
-    }),
-    null_ls.builtins.diagnostics.cppcheck,
-    null_ls.builtins.diagnostics.credo,
-    null_ls.builtins.diagnostics.eslint_d,
-    null_ls.builtins.diagnostics.hadolint,
-    null_ls.builtins.code_actions.eslint_d
-  },
-})
+-- local null_ls = require("null-ls")
+-- null_ls.setup({
+--   on_attach = function(client)
+--     if client.resolved_capabilities.document_formatting then
+--       vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+--     end
+--   end,
+--   sources = {
+--     null_ls.builtins.formatting.clang_format,
+--     -- null_ls.builtins.formatting.eslint_d,
+--     null_ls.builtins.formatting.gofmt,
+--     null_ls.builtins.formatting.goimports,
+--     null_ls.builtins.formatting.mix,
+--     null_ls.builtins.formatting.prettier.with({
+--       extra_filetypes = {'svelte'}
+--     }),
+--     null_ls.builtins.diagnostics.cppcheck,
+--     null_ls.builtins.diagnostics.credo,
+--     null_ls.builtins.diagnostics.eslint_d,
+--     null_ls.builtins.diagnostics.hadolint,
+--     null_ls.builtins.code_actions.eslint_d
+--   },
+-- })
 
-
-local trouble = require('trouble')
-trouble.setup {
-  mode = "workspace_diagnostics", -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
-  auto_open = true,
-  auto_close = true,
-  use_diagnostic_signs = true
-}
-
-local nightfox = require('nightfox')
-nightfox.setup {
-  fox = 'nightfox',
-  transparent = true
-}
-nightfox.load()
-
-
-local lualine = require('lualine')
-lualine.setup {
-  options = {
-    theme = 'nightfox',
-    icons_enabled = false,
-    icon = nil
-  }
-}
 
 vim.cmd[[
 command! Profile call s:command_profile()
