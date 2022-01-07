@@ -1,10 +1,7 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  use {
-    'wbthomason/packer.nvim',
-    opt = true
-  }
+  use {'wbthomason/packer.nvim', opt = true}
   use 'roxma/nvim-yarp'
   use 'roxma/vim-hug-neovim-rpc'
   use 'Shougo/denite.nvim'
@@ -21,36 +18,29 @@ return require('packer').startup(function(use)
   }
   use 'tpope/vim-fugitive'
   use 'EdenEast/nightfox.nvim'
-  -- use {
-  --   'EdenEast/nightfox.nvim',
-  --   config = function() require('nightfox').setup({
-  --     fox = 'nightfox',
-  --     transparent = true
-  --   }) end
-  -- }
-  -- use 'nvim-lualine/lualine.nvim'
+  use 'nvim-lualine/lualine.nvim'
   use {
     'nvim-lualine/lualine.nvim',
-    config = function() require('lualine').setup({
-      options = {
-        theme = 'nightfox',
-        icons_enabled = false,
-        icon = nil
-      }
-    }) end
+    config = function()
+      require('lualine').setup({
+        options = {
+          theme = 'nightfox',
+          icons_enabled = false,
+          icon = nil
+        }
+      })
+    end
   }
   use {
     'phaazon/hop.nvim',
     branch = 'v1',
-    config = function()
-      require'hop'.setup { keys = 'etovxqpdygfblzhckisuran' }
-    end
+    config = function() require'hop'.setup({ keys = 'etovxqpdygfblzhckisuran' }) end
   }
-  use 'terryma/vim-multiple-cursors'
-  use 'tpope/vim-surround'
+  use {'terryma/vim-multiple-cursors', opt = true}
+  use {'tpope/vim-surround', opt = true}
   use {
     'windwp/nvim-autopairs',
-    config = function() require('nvim-autopairs').setup{} end
+    config = function() require('nvim-autopairs').setup() end
   }
   use 'neovim/nvim-lspconfig'
   use 'williamboman/nvim-lsp-installer'
@@ -58,7 +48,7 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
     config = function()
-      require('nvim-treesitter.configs').setup {
+      require('nvim-treesitter.configs').setup({
         highlight = {
           enable = true,
           disable = {}
@@ -67,7 +57,7 @@ return require('packer').startup(function(use)
           enable = true,
         },
         ensure_installed = 'maintained',
-      }
+      })
     end
   }
   use 'JoosepAlviste/nvim-ts-context-commentstring'
