@@ -153,9 +153,9 @@ local function init()
     end
   }
 
-  use {'mg979/vim-visual-multi', opt = true}
+  use {'mg979/vim-visual-multi'}
 
-  use {'tpope/vim-surround', opt = true}
+  use {'tpope/vim-surround'}
 
   use {
     'windwp/nvim-autopairs',
