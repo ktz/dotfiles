@@ -153,7 +153,7 @@ local function init()
     end
   }
 
-  use {'terryma/vim-multiple-cursors', opt = true}
+  use {'mg979/vim-visual-multi', opt = true}
 
   use {'tpope/vim-surround', opt = true}
 
