@@ -289,6 +289,9 @@ local function init()
     requires = {'nvim-lua/plenary.nvim'},
     config = function()
       local null_ls = require('null-ls')
+      local formatting = null_ls.builtins.formatting
+      local diagnostics = null_ls.builtins.diagnostics
+      local code_actions = null_ls.builtins.code_actions
       null_ls.setup({
         on_attach = function(client)
           if client.resolved_capabilities.document_formatting then
@@ -296,20 +299,20 @@ local function init()
           end
         end,
         sources = {
-          null_ls.builtins.formatting.clang_format,
+          formatting.clang_format,
           -- null_ls.builtins.formatting.eslint_d,
-          null_ls.builtins.formatting.gofmt,
-          null_ls.builtins.formatting.goimports,
-          null_ls.builtins.formatting.mix,
-          null_ls.builtins.formatting.prettier.with({
+          formatting.gofmt,
+          formatting.goimports,
+          formatting.mix,
+          formatting.prettier.with({
             extra_filetypes = {'svelte'}
           }),
-          null_ls.builtins.diagnostics.cppcheck,
-          null_ls.builtins.diagnostics.credo,
-          null_ls.builtins.diagnostics.eslint_d,
-          null_ls.builtins.diagnostics.hadolint,
-          null_ls.builtins.code_actions.eslint_d,
-          null_ls.builtins.code_actions.gitsigns
+          diagnostics.cppcheck,
+          diagnostics.credo,
+          diagnostics.eslint_d,
+          diagnostics.hadolint,
+          code_actions.eslint_d,
+          code_actions.gitsigns
         },
       })
     end

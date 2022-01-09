@@ -19,9 +19,4 @@ function fish_user_key_bindings
 end
 
 set -gx PATH $PATH /usr/local/bin
-# necessary remove erlenv from anyenv
-status --is-interactive; and source (anyenv init -|psub)
-
-alias tmux='tmux -u'
-alias crontab='EDITOR=nano crontab'
-
+source /usr/local/opt/asdf/libexec/asdf.fish
