@@ -15,8 +15,10 @@ vim.o.smartcase = true
 vim.o.smartindent = true
 vim.o.backup = false
 vim.o.swapfile = false
--- vim.o.list = true
--- vim.o.listchars = 'eol:¬,tab:▸\\'
+vim.o.list = true
+vim.opt.listchars:append('space:⋅')
+vim.opt.listchars:append('eol:↴')
+vim.opt.listchars:append('tab:▸\\')
 -- vim.cmd[[set clipboard+=unnameplus]]
 vim.o.clipboard = 'unnamedplus'
 vim.wo.number = true
