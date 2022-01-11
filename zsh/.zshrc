@@ -33,9 +33,9 @@ autoload -U compinit
 compinit
 setopt complete_aliases
 
-alias ls="exa"
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 . /usr/local/opt/asdf/libexec/asdf.sh
+eval "$(direnv hook zsh)"
 
 
 ### Added by Zinit's installer
@@ -62,9 +62,11 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+zinit load zdharma-continuum/history-search-multi-word
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
     atpull'%atclone' pick"clrs.zsh" nocompile'!' \
