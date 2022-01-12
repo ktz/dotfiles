@@ -332,6 +332,7 @@ local function init()
   use {
     'lukas-reineke/indent-blankline.nvim',
     config = function() require('indent_blankline').setup({
+      filetype_exclude = {'NvimTree', 'denite', 'denite-filter'},
       show_current_context = true,
       show_current_context_start = true
     }) end

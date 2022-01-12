@@ -38,6 +38,7 @@ case ${OSTYPE} in
     source $HOME/Documents/macOS/zshrc.local
     ;;
 esac
+# [[ -f ~/.zshrc.local ]] && . ~/.zshrc.local
 . /usr/local/opt/asdf/libexec/asdf.sh
 eval "$(direnv hook zsh)"
 
