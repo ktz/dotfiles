@@ -1,8 +1,8 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+  set fish_greeting "Interactive fish"
 end
 
-set fish_greeting
 set -gx SHELL /usr/local/bin//fish
 set -gx LANG ja_JP.UTF-8
 set -gx LC_COLLATE "en_US.UTF-8"
@@ -21,3 +21,8 @@ end
 set -gx PATH $PATH /usr/local/bin
 source /usr/local/opt/asdf/libexec/asdf.fish
 direnv hook fish | source
+
+switch (uname)
+  case Darwin
+    source $HOME/Documents/macOS/local.fish
+end

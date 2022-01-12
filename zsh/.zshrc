@@ -33,7 +33,11 @@ autoload -U compinit
 compinit
 setopt complete_aliases
 
-[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+case ${OSTYPE} in
+  darwin*)
+    source $HOME/Documents/macOS/zshrc.local
+    ;;
+esac
 . /usr/local/opt/asdf/libexec/asdf.sh
 eval "$(direnv hook zsh)"
 
