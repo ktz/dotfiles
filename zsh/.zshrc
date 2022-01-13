@@ -28,7 +28,7 @@ setopt hist_ignore_all_dups
 setopt hist_save_no_dups
 setopt share_history
  
-fpath=(~/usr/local/share/zsh-completions $fpath)
+fpath=(~/.local/share/zsh-completions $fpath)
 autoload -U compinit
 compinit
 setopt complete_aliases
