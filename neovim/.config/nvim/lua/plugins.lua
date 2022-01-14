@@ -195,8 +195,10 @@ local function init()
           buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
           buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-          client.resolved_capabilities.document_formatting = false
-          client.resolved_capabilities.document_range_formatting = false
+          if client.name == 'gopls' then
+            client.resolved_capabilities.document_formatting = false
+          end
+          -- client.resolved_capabilities.document_range_formatting = false
         end
         local enhance_server_opts = {
           ["elixirls"] = function(opts)
@@ -300,18 +302,16 @@ local function init()
         end,
         sources = {
           formatting.clang_format,
-          -- null_ls.builtins.formatting.eslint_d,
-          formatting.gofmt,
           formatting.goimports,
           formatting.mix,
-          formatting.prettier.with({
-            extra_filetypes = {'svelte'}
-          }),
+          formatting.prettier,
+          -- formatting.prettier.with({
+          --   extra_filetypes = {'svelte'}
+          -- }),
           diagnostics.cppcheck,
           diagnostics.credo,
           diagnostics.eslint_d,
           diagnostics.hadolint,
-          code_actions.eslint_d,
           code_actions.gitsigns
         },
       })
