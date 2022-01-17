@@ -154,8 +154,8 @@ local function init()
   }
 
   use {'mg979/vim-visual-multi'}
-
   use {'tpope/vim-surround'}
+  use 'JoosepAlviste/nvim-ts-context-commentstring'
 
   use {
     'windwp/nvim-autopairs',
@@ -248,7 +248,10 @@ local function init()
     end
   }
 
-  use 'JoosepAlviste/nvim-ts-context-commentstring'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  -- use 'hrsh7th/cmp-path'
+  -- use 'hrsh7th/cmp-cmdline'
 
   use {
     'hrsh7th/nvim-cmp',
@@ -262,10 +265,13 @@ local function init()
           end,
         },
         mapping = {
-          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
           ['<C-f>'] = cmp.mapping.scroll_docs(4),
           ['<C-Space>'] = cmp.mapping.complete(),
-          ['<C-e>'] = cmp.mapping.close(),
+          ['<C-e>'] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+          }),
           ['<CR>'] = cmp.mapping.confirm({ select = true }),
         },
         sources = cmp.config.sources({
@@ -278,12 +284,7 @@ local function init()
     end
   }
 
-  use 'hrsh7th/cmp-nvim-lsp'
-
   use 'hrsh7th/cmp-vsnip'
-
-  use 'hrsh7th/cmp-buffer'
-
   use 'hrsh7th/vim-vsnip'
 
   use {
