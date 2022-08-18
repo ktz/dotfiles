@@ -32,6 +32,8 @@ vim.o.expandtab = true
 vim.api.nvim_set_keymap('n', 'Q', '<nop>', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'q', ':noh<cr>', {noremap = true, silent = true})
 
+
+
 vim.cmd[[
 command! Profile call s:command_profile()
 function! s:command_profile() abort

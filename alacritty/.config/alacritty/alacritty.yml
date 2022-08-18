@@ -3,21 +3,23 @@ env:
 
 shell:
   program: /bin/zsh
-  args:
-    - -l
-    - -c
-    - "tmux a -t 0 || tmux"
-
-#startup_mode: SimpleFullscreen
+  # args:
+  #   - -l
+  #   - -c
+  #   - "tmux a -t 0 || tmux"
 
 window:
-  dimensions:
-    columns: 180
-    lines: 60
-  padding:
-    x: 8
-    y: 4
+  # startup_mode: SimpleFullscreen
   opacity: 0.9
+
+# window:
+#   dimensions:
+#     columns: 180
+#     lines: 60
+#   padding:
+#     x: 8
+#     y: 4
+#   opacity: 0.9
 
 font:
   size: 14
@@ -36,24 +38,23 @@ font:
 
 colors:
   primary:
-    background: '0x282828'
-    foreground: '0xdfbf8e'
+    background: "0x282828"
+    foreground: "0xdfbf8e"
   normal:
-    black:   '0x665c54'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xe78a4e'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xdfbf8e'
+    black: "0x665c54"
+    red: "0xea6962"
+    green: "0xa9b665"
+    yellow: "0xe78a4e"
+    blue: "0x7daea3"
+    magenta: "0xd3869b"
+    cyan: "0x89b482"
+    white: "0xdfbf8e"
   bright:
-    black:   '0x928374'
-    red:     '0xea6962'
-    green:   '0xa9b665'
-    yellow:  '0xe3a84e'
-    blue:    '0x7daea3'
-    magenta: '0xd3869b'
-    cyan:    '0x89b482'
-    white:   '0xdfbf8e'
-
+    black: "0x928374"
+    red: "0xea6962"
+    green: "0xa9b665"
+    yellow: "0xe3a84e"
+    blue: "0x7daea3"
+    magenta: "0xd3869b"
+    cyan: "0x89b482"
+    white: "0xdfbf8e"
