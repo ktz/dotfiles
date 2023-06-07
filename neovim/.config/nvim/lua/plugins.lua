@@ -143,25 +143,40 @@ local function init()
           buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
           if client.name == 'gopls' then
-            client.resolved_capabilities.document_formatting = false
+            client.server_capabilities.document_formatting = false
           end
           if client.name == 'denols' then
-            client.resolved_capabilities.document_formatting = false
+            client.server_capabilities.document_formatting = false
           end
           if client.name == 'tsserver' then
-            client.resolved_capabilities.document_formatting = false
+            client.server_capabilities.document_formatting = false
           end
           if client.name == 'elixirls' then
-            client.resolved_capabilities.document_formatting = false
+            client.server_capabilities.document_formatting = false
           end
         end
         local enhance_server_opts = {
-          ["sumneko_lua"] = function(opts)
-            opts.cmd = { '/Users/' .. vim.fn.expand('$USER') .. '/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/macOS/lua-language-server' }
+          -- ["sumneko_lua"] = function(opts)
+          --   opts.cmd = { '/Users/' .. vim.fn.expand('$USER') .. '/.local/share/nvim/lsp_servers/sumneko_lua/extension/server/bin/macOS/lua-language-server' }
+          --   opts.settings = {
+          --     Lua = {
+          --       diagnostics = {
+          --         globals = {'vim'}
+          --       }
+          --     }
+          --   }
+          -- end,
+          ["lua_ls"] = function(opts)
             opts.settings = {
               Lua = {
                 diagnostics = {
                   globals = {'vim'}
+                },
+                workspace = {
+                  library = {
+                    [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                    [vim.fn.stdpath "config" .. "/lua"] = true,
+                  }
                 }
               }
             }
@@ -190,7 +205,8 @@ local function init()
         local opts = {}
 
         opts.on_attach = on_attach
-        opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+        -- opts.capabilities = require("cmp_nvim_lsp").update_capabilities(vim.lsp.protocol.make_client_capabilities())
+        opts.capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
         if enhance_server_opts[server.name] then
           enhance_server_opts[server.name](opts)
         end
@@ -210,7 +226,7 @@ local function init()
       local code_actions = null_ls.builtins.code_actions
       null_ls.setup({
         on_attach = function(client)
-          if client.resolved_capabilities.document_formatting then
+          if client.server_capabilities.document_formatting then
             vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
           end
         end,

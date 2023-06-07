@@ -1,16 +1,17 @@
-env:
-  TERM: alacritty
+# env:
+#  TERM: alacritty
 
 shell:
-  program: /bin/zsh
-  # args:
-  #   - -l
-  #   - -c
-  #   - "tmux a -t 0 || tmux"
+  program: /usr/local/bin/zsh
+  args:
+    - -l
+    - -c
+    - "tmux -L zsh-tmux-socket new -s zsh-session"
+    # - "tmux a -t 0 || tmux"
 
 window:
   # startup_mode: SimpleFullscreen
-  opacity: 0.9
+   opacity: 0.9
 
 # window:
 #   dimensions:
