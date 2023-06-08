@@ -8,10 +8,9 @@ vim.o.smartindent = true
 vim.o.backup = false
 vim.o.swapfile = false
 vim.o.list = true
-vim.opt.listchars:append('space:⋅')
+-- vim.opt.listchars:append('space:⋅')
 vim.opt.listchars:append('eol:↴')
-vim.opt.listchars:append('tab:▸\\')
--- vim.cmd[[set clipboard+=unnameplus]]
+-- vim.opt.listchars:append('tab:▸\\')
 vim.o.clipboard = 'unnamedplus'
 vim.wo.number = true
 vim.wo.cursorline = true
@@ -21,9 +20,8 @@ vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.expandtab = true
 
-vim.api.nvim_set_keymap('n', 'Q', '<nop>', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'q', ':noh<cr>', {noremap = true, silent = true})
--- vim.api.nvim_set_keymap('n', '<esc><esc>', {noremap = true, silent = true})
+vim.keymap.set('n', 'Q', '<nop>', {noremap = true, silent = true})
+vim.keymap.set('n', 'q', ':noh<cr>', {noremap = true, silent = true})
 
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -42,33 +40,35 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   {
     'nvim-telescope/telescope.nvim',
-    keys = {
-      {"<leader>f", "<cmd>Telescope find_files<cr>"},
-      {"<leader>g", "<cmd>Telescope live_grep<cr>"}
-    },
-    dependencies = {
-      'nvim-lua/plenary.nvim'
-    },
-  },
-  {
-    'kyazdani42/nvim-tree.lua',
+    dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-file-browser.nvim' },
     config = function()
-      require('nvim-tree').setup({
-        renderer = {
-          icons = {
-            show = {
-              file = false,
-              folder = false,
-              folder_arrow = false,
-              git = false
-            }
-          }
-        }
-      })
-      vim.api.nvim_set_keymap('n', '<leader>d', ':NvimTreeToggle<cr>', {noremap = true, silent = true})
-      vim.api.nvim_set_keymap('n', '<leader>u', ':NvimTreeRefresh<cr>', {noremap = true, silent = true})
+      require('telescope').load_extension 'file_browser'
     end,
+    keys = {
+      { '<leader>f', '<cmd>Telescope find_files<cr>' },
+      { '<leader>g', '<cmd>Telescope live_grep<cr>' },
+      { '<leader>d', '<cmd>Telescope file_browser<cr>'}
+    },
   },
+  -- {
+  --   'kyazdani42/nvim-tree.lua',
+  --   config = function()
+  --     require('nvim-tree').setup({
+  --       renderer = {
+  --         icons = {
+  --           show = {
+  --             file = false,
+  --             folder = false,
+  --             folder_arrow = false,
+  --             git = false
+  --           }
+  --         }
+  --       }
+  --     })
+  --     vim.keymap.set('n', '<leader>d', '<cmd>NvimTreeToggle<cr>')
+  --     vim.keymap.set('n', '<leader>u', '<cmd>NvimTreeRefresh<cr>')
+  --   end,
+  -- },
   {
     'numToStr/Comment.nvim',
     config = function()
@@ -114,8 +114,8 @@ require("lazy").setup({
     branch = 'v1',
     config = function()
       require('hop').setup({ keys = 'etovxqpdygfblzhckisuran' })
-      vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require('hop').hint_char2()<cr>", {})
-      vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require('hop').hint_char1({current_line_only = true})<cr>", {})
+      vim.keymap.set('n', 'F', "<cmd>lua require('hop').hint_char2()<cr>", {})
+      vim.keymap.set('n', 'f', "<cmd>lua require('hop').hint_char1({current_line_only = true})<cr>", {})
     end
   },
   { 'mg979/vim-visual-multi' },
@@ -148,45 +148,47 @@ require("lazy").setup({
   {
     'williamboman/mason.nvim',
     build = ':MasonUpdate',
-    config = function()
-      require('mason').setup()
-    end
   },
   {
     'williamboman/mason-lspconfig.nvim',
-    -- dependencies = 'williamboman/mason.nvim',
+    dependencies = {'williamboman/mason.nvim', 'neovim/nvim-lspconfig'},
     config = function()
+      require('mason').setup()
       require('mason-lspconfig').setup()
-    end
-  },
-  {
-    'neovim/nvim-lspconfig',
-    config = function()
-      local opt = {
-        capabilities = require('cmp_nvim_lsp').default_capabilities(),
-        on_attach = function(_, bufnr)
-          local bufopts = {silent = true, buffer = bufnr}
-          vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-          vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-          vim.keymap.set('n', '<space>e', vim.lsp.buf.diagnostic.open_float, bufopts)
-          vim.keymap.set('n', '[d', vim.lsp.buf.diagnostic.goto_prev, bufopts)
-          vim.keymap.set('n', ']d', vim.lsp.buf.diagnostic.goto_next, bufopts)
+      require('mason-lspconfig').setup_handlers {
+        function(server_name)
+          local opt = {
+            capabilities = require('cmp_nvim_lsp').default_capabilities(),
+            on_attach = function(_, bufnr)
+              local bufopts = {silent = true, buffer = bufnr}
+              vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+              vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+              vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+              vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+              vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+              vim.keymap.set('n', '<space>e', vim.lsp.buf.diagnostic.open_float, bufopts)
+              vim.keymap.set('n', '[d', vim.lsp.buf.diagnostic.goto_prev, bufopts)
+              vim.keymap.set('n', ']d', vim.lsp.buf.diagnostic.goto_next, bufopts)
+            end
+          }
+          require('lspconfig')[server_name].setup{opt}
+        end,
+        ["lua_ls"] = function()
+          require('lspconfig').lua_ls.setup {
+            settings = {
+              Lua = {
+                diagnostics = {
+                  globals = {'vim'}
+                },
+                workspace = {
+                  library = vim.api.nvim_get_runtime_file('', true),
+                  checkThirdParty = false
+                }
+              }
+            }
+          }
         end
       }
-      require('lspconfig').lua_ls.setup({
-        settings = {
-          Lua = {
-            diagnostics = {
-              globals = {'vim'}
-            },
-          }
-        }
-      })
-      require('lspconfig').rust_analyzer.setup(opt)
-      require('lspconfig').tsserver.setup(opt)
     end
   },
   {
@@ -217,7 +219,7 @@ require("lazy").setup({
           -- }),
           diagnostics.cppcheck,
           diagnostics.credo,
-          diagnostics.deno_lint,
+          -- diagnostics.deno_lint,
           -- diagnostics.eslint_d,
           diagnostics.hadolint,
           diagnostics.jsonlint,
@@ -267,7 +269,7 @@ require("lazy").setup({
   {
     'lukas-reineke/indent-blankline.nvim',
     config = function() require('indent_blankline').setup({
-      filetype_exclude = {'NvimTree', 'denite', 'denite-filter'},
+      filetype_exclude = {'NvimTree'},
       show_current_context = true,
       show_current_context_start = true
     }) end
