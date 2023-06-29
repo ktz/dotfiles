@@ -46,6 +46,7 @@ require("lazy").setup({
     end,
     keys = {
       { '<leader>f', '<cmd>Telescope find_files<cr>' },
+      { '<leader>F', '<cmd>Telescope find_files hidden=true<cr>' },
       { '<leader>g', '<cmd>Telescope live_grep<cr>' },
       { '<leader>d', '<cmd>Telescope file_browser<cr>'}
     },
@@ -173,7 +174,7 @@ require("lazy").setup({
           }
           require('lspconfig')[server_name].setup{opt}
         end,
-        ["lua_ls"] = function()
+        ['lua_ls'] = function()
           require('lspconfig').lua_ls.setup {
             settings = {
               Lua = {
@@ -187,8 +188,62 @@ require("lazy").setup({
               }
             }
           }
-        end
+        end,
+        -- ['rust_analyzer'] = function()
+        --   require('lspconfig').rust_analyzer.setup {
+        --     settings = {
+        --       ['rust-analyzer'] = {
+        --         cargo = {
+        --           allFeatures = true
+        --         }
+        --       },
+        --       cargo = {
+        --         allFeatures = true,
+        --         buildScripts = {
+        --           enable = true
+        --         }
+        --       },
+        --       checkOnSave = {
+        --         command = "clippy"
+        --       },
+        --       diagnostics = {
+        --         disabled = {'inactive-code', 'unresolved-proc-macro'}
+        --       },
+        --       procMacro = {
+        --         enable = true
+        --       }
+        --     }
+        --   }
+        -- end
       }
+    end
+  },
+  {
+    'simrat39/rust-tools.nvim',
+    config = function ()
+      local rt = require('rust-tools')
+      rt.setup({
+        server = {
+          cargo = {
+            features = 'all'
+          },
+          on_attach = function(_, bufnr)
+            vim.keymap.set('n', '<C-space>', rt.hover_actions.hover_actions, { buffer = bufnr })
+            vim.keymap.set('n', '<Leader>a', rt.code_action_group.code_action_group, { buffer = bufnr })
+          end,
+          settings = {
+            ['rust-analyzer'] = {
+              -- cargo = {
+              --   -- allFeatures = true,
+              --   features = 'all'
+              -- },
+              checkOnSave = {
+                command = 'clippy'
+              },
+            }
+          }
+        }
+      })
     end
   },
   {
@@ -212,7 +267,7 @@ require("lazy").setup({
           formatting.goimports,
           formatting.jq,
           formatting.mix,
-          formatting.rustfmt,
+          -- formatting.rustfmt,
           -- formatting.prettier,
           -- formatting.prettier.with({
           --   extra_filetypes = {'svelte'}
@@ -258,13 +313,18 @@ require("lazy").setup({
   },
   {
     'folke/trouble.nvim',
-    dependencies = 'kyazdani42/nvim-web-devicons',
-    config = function() require('trouble').setup({
-      mode = "workspace_diagnostics", -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {
       auto_open = true,
       auto_close = true,
       use_diagnostic_signs = true
-    }) end
+    }
+    -- config = function() require('trouble').setup({
+    --   mode = "workspace_diagnostics", -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
+    --   auto_open = true,
+    --   auto_close = true,
+    --   use_diagnostic_signs = true
+    -- }) end
   },
   {
     'lukas-reineke/indent-blankline.nvim',

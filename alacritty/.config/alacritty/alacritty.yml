@@ -2,11 +2,16 @@
 #  TERM: alacritty
 
 shell:
+  # program: /usr/local/bin/fish
+  # args:
+  #   - -l
+  #   - -c
+  #   - "tmux -L alacritty-tmux-socket new -s alac"
   program: /usr/local/bin/zsh
   args:
     - -l
     - -c
-    - "tmux -L zsh-tmux-socket new -s zsh-session"
+    - "tmux -L zsh-tmux-socket new -s alac"
     # - "tmux a -t 0 || tmux"
 
 window:
@@ -26,6 +31,7 @@ font:
   size: 14
   normal:
     family: MesloLGS NF
+    # family: Hack Nerd Font
     style: Regular
   bold:
     family: MesloLGS NF
