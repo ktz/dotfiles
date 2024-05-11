@@ -21,6 +21,7 @@ eval "$(sheldon source)"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+alias ls='eza'
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -51,7 +52,7 @@ eval "$(sheldon source)"
 # setopt hist_ignore_all_dups
 # setopt hist_save_no_dups
 # setopt share_history
-#  
+#
 # fpath=(~/.local/share/zsh-completions $fpath)
 # autoload -U compinit
 # compinit

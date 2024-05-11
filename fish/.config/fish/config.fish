@@ -26,3 +26,19 @@ switch (uname)
   case Darwin
     source $HOME/Documents/macOS/local.fish
 end
+
+if command -v eza > /dev/null
+  abbr --add ls eza
+end
+
+if command -v rg > /dev/null
+  abbr --add grep rg
+end
+
+if command -v fd > /dev/null
+  abbr --add find fd
+end
+
+if command -v bat > /dev/null
+  abbr --add cat bat
+end

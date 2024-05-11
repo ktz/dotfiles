@@ -1,4 +1,4 @@
-vim.cmd[[
+vim.cmd [[
 hi ZenkakuSpace ctermbg=red guibg=#ff0000
 au BufNewFile,BufRead * match ZenkakuSpace /　/
 autocmd BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
@@ -20,9 +20,14 @@ vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
 vim.o.expandtab = true
 
-vim.keymap.set('n', 'Q', '<nop>', {noremap = true, silent = true})
-vim.keymap.set('n', 'q', ':noh<cr>', {noremap = true, silent = true})
+vim.keymap.set('n', 'Q', '<nop>', { noremap = true, silent = true })
+vim.keymap.set('n', 'q', ':noh<cr>', { noremap = true, silent = true })
 
+vim.filetype.add({
+  extension = {
+    templ = "templ"
+  }
+})
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -39,6 +44,9 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {
+    'direnv/direnv.vim'
+  },
+  {
     'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'nvim-telescope/telescope-file-browser.nvim' },
     config = function()
@@ -48,7 +56,7 @@ require("lazy").setup({
       { '<leader>f', '<cmd>Telescope find_files<cr>' },
       { '<leader>F', '<cmd>Telescope find_files hidden=true<cr>' },
       { '<leader>g', '<cmd>Telescope live_grep<cr>' },
-      { '<leader>d', '<cmd>Telescope file_browser<cr>'}
+      { '<leader>d', '<cmd>Telescope file_browser<cr>' }
     },
   },
   -- {
@@ -74,10 +82,10 @@ require("lazy").setup({
     'numToStr/Comment.nvim',
     config = function()
       require('Comment').setup()
-      vim.api.nvim_set_keymap('n', '<leader>c', 'gcc', {noremap = false, silent = true})
-      vim.api.nvim_set_keymap('v', '<leader>c', 'gc', {noremap = false, silent = true})
+      vim.api.nvim_set_keymap('n', '<leader>c', 'gcc', { noremap = false, silent = true })
+      vim.api.nvim_set_keymap('v', '<leader>c', 'gc', { noremap = false, silent = true })
     end
-	},
+  },
   {
     'lewis6991/gitsigns.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -95,7 +103,7 @@ require("lazy").setup({
           transparent = true
         }
       })
-      vim.cmd[[colorscheme nightfox]]
+      vim.cmd [[colorscheme nightfox]]
     end,
   },
   {
@@ -110,9 +118,18 @@ require("lazy").setup({
       })
     end
   },
+  -- {
+  --   'phaazon/hop.nvim',
+  --   branch = 'v1',
+  --   config = function()
+  --     require('hop').setup({ keys = 'etovxqpdygfblzhckisuran' })
+  --     vim.keymap.set('n', 'F', "<cmd>lua require('hop').hint_char2()<cr>", {})
+  --     vim.keymap.set('n', 'f', "<cmd>lua require('hop').hint_char1({current_line_only = true})<cr>", {})
+  --   end
+  -- },
   {
-    'phaazon/hop.nvim',
-    branch = 'v1',
+    'smoka7/hop.nvim',
+    version = '*',
     config = function()
       require('hop').setup({ keys = 'etovxqpdygfblzhckisuran' })
       vim.keymap.set('n', 'F', "<cmd>lua require('hop').hint_char2()<cr>", {})
@@ -127,7 +144,8 @@ require("lazy").setup({
     dependencies = { 'hrsh7th/nvim-cmp' },
     config = function()
       require('nvim-autopairs').setup()
-      require('cmp').event:on('confirm_done', require('nvim-autopairs.completion.cmp').on_confirm_done({map_char = {text = ''}}))
+      require('cmp').event:on('confirm_done',
+        require('nvim-autopairs.completion.cmp').on_confirm_done({ map_char = { text = '' } }))
     end
   },
   {
@@ -142,7 +160,10 @@ require("lazy").setup({
         indent = {
           enable = true,
         },
+        auto_install = true,
         ensure_installed = 'all',
+        sync_install = false,
+        ignore_install = {},
       })
     end
   },
@@ -152,7 +173,7 @@ require("lazy").setup({
   },
   {
     'williamboman/mason-lspconfig.nvim',
-    dependencies = {'williamboman/mason.nvim', 'neovim/nvim-lspconfig'},
+    dependencies = { 'williamboman/mason.nvim', 'neovim/nvim-lspconfig' },
     config = function()
       require('mason').setup()
       require('mason-lspconfig').setup()
@@ -161,7 +182,7 @@ require("lazy").setup({
           local opt = {
             capabilities = require('cmp_nvim_lsp').default_capabilities(),
             on_attach = function(_, bufnr)
-              local bufopts = {silent = true, buffer = bufnr}
+              local bufopts = { silent = true, buffer = bufnr }
               vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
               vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
               vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
@@ -172,18 +193,39 @@ require("lazy").setup({
               vim.keymap.set('n', ']d', vim.lsp.buf.diagnostic.goto_next, bufopts)
             end
           }
-          require('lspconfig')[server_name].setup{opt}
+          require('lspconfig')[server_name].setup { opt }
+        end,
+        ['gopls'] = function()
+          require('lspconfig').gopls.setup {
+            settings = { gopls = {
+              buildFlags = { "-tags=wireinject" }
+            } }
+          }
         end,
         ['lua_ls'] = function()
           require('lspconfig').lua_ls.setup {
             settings = {
               Lua = {
                 diagnostics = {
-                  globals = {'vim'}
+                  globals = { 'vim' }
                 },
                 workspace = {
                   library = vim.api.nvim_get_runtime_file('', true),
                   checkThirdParty = false
+                }
+              }
+            }
+          }
+        end,
+        ['rust_analyzer'] = function()
+          require('lspconfig').rust_analyzer.setup {
+            settings = {
+              procMacro = {
+                ignored = {
+                  leptos_macro = {
+                    'component',
+                    'server',
+                  }
                 }
               }
             }
@@ -220,7 +262,7 @@ require("lazy").setup({
   },
   {
     'simrat39/rust-tools.nvim',
-    config = function ()
+    config = function()
       local rt = require('rust-tools')
       rt.setup({
         server = {
@@ -234,58 +276,61 @@ require("lazy").setup({
           settings = {
             ['rust-analyzer'] = {
               -- cargo = {
-              --   -- allFeatures = true,
               --   features = 'all'
               -- },
               checkOnSave = {
                 command = 'clippy'
               },
+              -- diagnostics = {
+              --   disabled = 'unresolved-proc-macro'
+              -- },
             }
           }
         }
       })
     end
   },
-  {
-    'jose-elias-alvarez/null-ls.nvim',
-    dependencies = {'nvim-lua/plenary.nvim'},
-    config = function()
-      local null_ls = require('null-ls')
-      local formatting = null_ls.builtins.formatting
-      local diagnostics = null_ls.builtins.diagnostics
-      local code_actions = null_ls.builtins.code_actions
-      null_ls.setup({
-        on_attach = function(client)
-          if client.server_capabilities.document_formatting then
-            vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-          end
-        end,
-        sources = {
-          formatting.clang_format,
-          formatting.deno_fmt,
-          formatting.gofmt,
-          formatting.goimports,
-          formatting.jq,
-          formatting.mix,
-          -- formatting.rustfmt,
-          -- formatting.prettier,
-          -- formatting.prettier.with({
-          --   extra_filetypes = {'svelte'}
-          -- }),
-          diagnostics.cppcheck,
-          diagnostics.credo,
-          -- diagnostics.deno_lint,
-          -- diagnostics.eslint_d,
-          diagnostics.hadolint,
-          diagnostics.jsonlint,
-          code_actions.gitsigns
-        },
-      })
-    end
-  },
+  -- {
+  --   -- 'jose-elias-alvarez/null-ls.nvim',
+  --   'nvimtools/none-ls.nvim',
+  --   dependencies = {'nvim-lua/plenary.nvim'},
+  --   config = function()
+  --     local null_ls = require('null-ls')
+  --     local formatting = null_ls.builtins.formatting
+  --     local diagnostics = null_ls.builtins.diagnostics
+  --     local code_actions = null_ls.builtins.code_actions
+  --     null_ls.setup({
+  --       on_attach = function(client)
+  --         if client.server_capabilities.document_formatting then
+  --           vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+  --         end
+  --       end,
+  --       sources = {
+  --         formatting.clang_format,
+  --         formatting.deno_fmt,
+  --         formatting.gofmt,
+  --         formatting.goimports,
+  --         formatting.jq,
+  --         formatting.mix,
+  --         -- formatting.rustfmt,
+  --         -- formatting.prettier,
+  --         -- formatting.prettier.with({
+  --         --   extra_filetypes = {'svelte'}
+  --         -- }),
+  --         diagnostics.cppcheck,
+  --         diagnostics.credo,
+  --         -- diagnostics.deno_lint,
+  --         -- diagnostics.eslint_d,
+  --         diagnostics.hadolint,
+  --         diagnostics.jsonlint,
+  --         code_actions.gitsigns
+  --       },
+  --     })
+  --   end
+  -- },
   {
     'hrsh7th/nvim-cmp',
-    dependencies = {'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip'},
+    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-buffer', 'hrsh7th/cmp-vsnip', 'hrsh7th/vim-vsnip' },
     config = function()
       local cmp = require('cmp')
       vim.opt.completeopt = 'menu,menuone,noselect'
@@ -304,9 +349,9 @@ require("lazy").setup({
         },
         sources = cmp.config.sources({
           { name = 'nvim_lsp' },
-        --   { name = 'vsnip' },
-        -- }, {
-        --   { name = 'buffer' },
+          --   { name = 'vsnip' },
+          -- }, {
+          --   { name = 'buffer' },
         })
       })
     end
@@ -317,21 +362,54 @@ require("lazy").setup({
     opts = {
       auto_open = true,
       auto_close = true,
-      use_diagnostic_signs = true
+      use_diagnostic_signs = true,
     }
-    -- config = function() require('trouble').setup({
-    --   mode = "workspace_diagnostics", -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
-    --   auto_open = true,
-    --   auto_close = true,
-    --   use_diagnostic_signs = true
-    -- }) end
   },
   {
     'lukas-reineke/indent-blankline.nvim',
-    config = function() require('indent_blankline').setup({
-      filetype_exclude = {'NvimTree'},
-      show_current_context = true,
-      show_current_context_start = true
-    }) end
+    main = 'ibl',
+    config = function()
+      require('ibl').setup({
+      })
+    end
+  },
+  {
+    'elentok/format-on-save.nvim',
+    config = function()
+      local format_on_save = require('format-on-save')
+      local formatters = require('format-on-save.formatters')
+      format_on_save.setup({
+        exclude_path_patterns = {
+          '/node_modules/',
+          '.local/share/nvim/lazy',
+        },
+        formatter_by_ft = {
+          css = formatters.lsp,
+          -- go = formatters.lsp,
+          html = formatters.lsp,
+          javascript = formatters.lsp,
+          json = formatters.lsp,
+          lua = formatters.lsp,
+          markdown = formatters.prettierd,
+          rust = formatters.lsp,
+          scss = formatters.lsp,
+          typescript = formatters.prettierd,
+          yaml = formatters.lsp,
+          go = {
+            -- formatters.shell({
+            --   cmd = { 'goimports-reviser', '-rm-unused', '-set-alias', '-format', '%' },
+            --   tempfile = function()
+            --     return vim.fn.expand('%') .. '.formatter-temp'
+            --   end
+            -- }),
+            formatters.shell({ cmd = { 'gofmt' } })
+          }
+        },
+        fallback_formatter = {
+          formatters.remove_trailing_whitespace,
+          formatters.prettiers,
+        },
+      })
+    end
   }
 })
