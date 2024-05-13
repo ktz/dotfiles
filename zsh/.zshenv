@@ -1,7 +1,7 @@
 export SHELL=/bin/zsh
 
-export LANG=ja_JP.UTF-8
-# export LANGUAGE="ja_JP"
+export LANG="en_US.UTF-8"
+export LANGUAGE="en_US.UTF-8"
 export LC_COLLATE="en_US.UTF-8"
 export LC_CTYPE="en_US.UTF-8"
 export LC_MESSAGES="en_US.UTF-8"

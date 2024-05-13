@@ -21,6 +21,7 @@ end
 set -gx PATH $PATH /usr/local/bin
 source /usr/local/opt/asdf/libexec/asdf.fish
 direnv hook fish | source
+fzf --fish | source
 
 switch (uname)
   case Darwin

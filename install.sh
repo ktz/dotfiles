@@ -19,3 +19,13 @@ if [ ! -d ~/.config/kitty ]; then
   mkdir -p ~/.config/kitty
 fi
 ln -sf ${DIR}/kitty/.config/kitty/kitty.conf ~/.config/kitty/kitty.conf
+
+if [ ! -d ~/.config/yabai ]; then
+  mkdir -p ~/.config/yabai
+fi
+ln -sf ${DIR}/yabai/.config/yabai/yabairc ~/.config/yabai/yabairc
+
+if [ ! -d ~/.config/skhd ]; then
+  mkdir -p ~/.config/skhd
+fi
+ln -sf ${DIR}/skhd/.config/skhd/skhdrc ~/.config/skhd/skhdrc
