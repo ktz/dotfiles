@@ -15,6 +15,11 @@ if [ ! -d ~/.config/nvim/lua ]; then
 fi
 ln -sf ${DIR}/neovim/.config/nvim/lua/plugins.lua ~/.config/nvim/lua/plugins.lua
 
+if [ ! -d ~/.config/alacritty ]; then
+  mkdir -p ~/.config/alacritty
+fi
+ln -sf ${DIR}/alacritty/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml
+
 if [ ! -d ~/.config/kitty ]; then
   mkdir -p ~/.config/kitty
 fi
@@ -29,3 +34,4 @@ if [ ! -d ~/.config/skhd ]; then
   mkdir -p ~/.config/skhd
 fi
 ln -sf ${DIR}/skhd/.config/skhd/skhdrc ~/.config/skhd/skhdrc
+
