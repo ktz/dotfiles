@@ -19,3 +19,8 @@ abbrevs:
     abbr: cat
     snippet: bat
     if: (( ${+commands[bat]} ))
+  - name: git commit
+    abbr: c
+    snippet: commit -a -m 
+    global: true
+    context: '^git\s'

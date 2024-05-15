@@ -5,14 +5,29 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
+case ${OSTYPE} in
+  darwin*)
+    source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
+    source $HOME/Documents/macOS/zshrc.local
+    . /usr/local/opt/asdf/libexec/asdf.sh
+    source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    ;;
+  linux-gnu)
+    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+    . "$HOME/.asdf/asdf.sh"
+    # . "$HOME/.asdf/completions/asdf.bash"
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    ;;
+esac
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 HISTFILE=$HOME/.zhistory
-SAVEHIST=1000
-HISTSIZE=999
+SAVEHIST=10000
+HISTSIZE=10000
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups
@@ -20,18 +35,8 @@ setopt hist_verify
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
-source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 eval "$(zoxide init zsh)"
 eval "$(zabrze init --bind-keys)"
 eval "$(fzf --zsh)"
 
-. /usr/local/opt/asdf/libexec/asdf.sh
 eval "$(direnv hook zsh)"
-
-case ${OSTYPE} in
-  darwin*)
-    source $HOME/Documents/macOS/zshrc.local
-    ;;
-esac
-
