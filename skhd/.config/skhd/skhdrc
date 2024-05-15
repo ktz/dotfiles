@@ -1,6 +1,6 @@
 # Launch Applications
 
-shift + cmd - 0x01: osascript -e 'tell application "Slack" to run' \
+shift + cmd - 1: osascript -e 'tell application "Slack" to run' \
   -e 'tell application "System Events"' \
   -e 'if visible of application process "Slack" is true then' \
   -e 'set visible of application process "Slack" to false' \
@@ -17,51 +17,14 @@ alt - k: yabai -m window --focus north || yabai -m display --focus north
 alt - n: yabai -m window --focus next || yabai -m display --focus next
 alt - p: yabai -m window --focus prev || yabai -m display --focus prev
 
-# Move Window between Displays
-
-# alt - left: yabai -m window --display prev \
-#   && yabai -m display --focus prev
-# alt - right: yabai -m window --display next \
-#   && yabai -m display --focus next
-
-# Move Window in Same Display
-
 alt + cmd - left: yabai -m window --swap west
 alt + cmd - right: yabai -m window --swap east
 alt + cmd - up: yabai -m window --swap north
 alt + cmd - down: yabai -m window --swap south
-# ctrl + shift - left: yabai -m window --resize left:-50:0 || yabai -m window --resize right:-50:0
-# ctrl + shift - right: yabai -m window --resize right:50:0 || yabai -m window --resize left:50:0
-# ctrl + shift - down: yabai -m window --resize bottom:0:20 || yabai -m window --resize top:0:20
-# ctrl + shift - up: yabai -m window --resize top:0:-20 || yabai -m window --resize bottom:0:-20
 alt - left: yabai -m window --resize left:-50:0 || yabai -m window --resize right:-50:0
 alt - right: yabai -m window --resize right:50:0 || yabai -m window --resize left:50:0
 alt - down: yabai -m window --resize bottom:0:20 || yabai -m window --resize top:0:20
 alt - up: yabai -m window --resize top:0:-20 || yabai -m window --resize bottom:0:-20
 
-# Focus Display(alt + 左右矢印でも focus を switch できるよう設定してます)
-
-# alt - 0x2B: yabai -m display --focus prev \
-#   && yabai -m display --focus stack.prev
-# alt - 0x2F: yabai -m display --focus next \
-#   && yabai -m display --focus stack.next
-
-# Toggle FullScreen
-
 alt - z: yabai -m window --toggle zoom-fullscreen
-
-# Mirror
-
-# alt - y: yabai -m space --mirror y-axis
-# alt - x: yabai -m space --mirror x-axis
-
-
-# Rotate & Split & Balance & Toggle
-
-# alt - r: yabai -m space --rotate 90
-# alt - s: yabai -m window --toggle split
-# alt - b: yabai -m space --balance
-# alt - f: yabai -m window --toggle float; \
-#   yabai -m window --grid 4:4:1:1:2:2
-
 alt - f: yabai -m window --toggle float --grid 4:4:1:1:2:2

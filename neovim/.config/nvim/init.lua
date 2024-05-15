@@ -13,6 +13,7 @@ vim.opt.listchars:append('eol:↴')
 -- vim.opt.listchars:append('tab:▸\\')
 vim.o.clipboard = 'unnamedplus'
 vim.wo.number = true
+vim.wo.relativenumber = true
 vim.wo.cursorline = true
 
 vim.o.tabstop = 2
