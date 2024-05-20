@@ -14,11 +14,19 @@ case ${OSTYPE} in
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     ;;
   linux-gnu)
-    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-    . "$HOME/.asdf/asdf.sh"
-    # . "$HOME/.asdf/completions/asdf.bash"
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    if [ -e /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]; then
+      source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+    fi
+    if type asdf > /dev/null; then
+      . "$HOME/.asdf/asdf.sh"
+      # . "$HOME/.asdf/completions/asdf.bash"
+    fi
+    if [ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+      source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    fi
+    if [ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+      source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    fi
     ;;
 esac
 
@@ -35,8 +43,15 @@ setopt hist_verify
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
 
-eval "$(zoxide init zsh)"
-eval "$(zabrze init --bind-keys)"
-eval "$(fzf --zsh)"
-
-eval "$(direnv hook zsh)"
+if type zoxide > /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
+if type zabrze > /dev/null; then
+  eval "$(zabrze init --bind-keys)"
+fi
+if type fzf > /dev/null; then
+  eval "$(fzf --zsh)"
+fi
+if type direnv > /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
