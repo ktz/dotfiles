@@ -27,7 +27,7 @@ case ${OSTYPE} in
     if [ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
       source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
     fi
-    .source $HOME/.zshrc.local
+      source $HOME/.zshrc.local
     ;;
 esac
 
