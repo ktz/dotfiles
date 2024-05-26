@@ -7,20 +7,27 @@ abbrevs:
   #   abbr: cd
   #   snippet: zi
   #   if: (( ${+commands[zi]} ))
-  - name: rg
-    abbr: grep
-    snippet: rg
-    if: (( ${+commands[rg]} ))
-  - name: fd
-    abbr: find
-    snippet: fd
-    if: (( ${+commands[fd]} ))
-  - name: bat
-    abbr: cat
-    snippet: bat
-    if: (( ${+commands[bat]} ))
+  # - name: rg
+  #   abbr: grep
+  #   snippet: rg
+  #   if: (( ${+commands[rg]} ))
+  # - name: fd
+  #   abbr: find
+  #   snippet: fd
+  #   if: (( ${+commands[fd]} ))
+  # - name: bat
+  #   abbr: cat
+  #   snippet: bat
+  #   if: (( ${+commands[bat]} ))
   - name: git commit
     abbr: c
     snippet: commit -a -m 
     global: true
     context: '^git\s'
+  - name: nvim fzf
+    abbr: fnvim
+    snippet: nvim $(fzf)
+    if: (( ${+commands[fzf]} ))
+  - name: sleepexit
+    abbr: sleeptimer
+    snippet: sudo systemctl suspend && exit
