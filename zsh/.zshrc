@@ -17,10 +17,8 @@ case ${OSTYPE} in
     if [ -e /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]; then
       source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
     fi
-    if type asdf > /dev/null; then
-      . "$HOME/.asdf/asdf.sh"
-      # . "$HOME/.asdf/completions/asdf.bash"
-    fi
+    . "$HOME/.asdf/asdf.sh"
+    # . "$HOME/.asdf/completions/asdf.bash"
     if [ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
       source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     fi
