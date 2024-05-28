@@ -412,5 +412,20 @@ require("lazy").setup({
         },
       })
     end
+  },
+  { 'vim-denops/denops.vim' },
+  {
+    'vim-skk/skkeleton',
+    dependencies = { 'vim-denops/denops.vim' },
+    config = function()
+      vim.keymap.set('i', '<C-j>', '<Plug>(skkeleton-toggle)', { remap = true })
+      vim.fn['skkeleton#config']({
+        globalDictionaries = {
+          '~/.skk/SKK-JISYO.L',
+          '/usr/share/skk/SKK-JISYO.L'
+        }
+      })
+    end
   }
+
 })
