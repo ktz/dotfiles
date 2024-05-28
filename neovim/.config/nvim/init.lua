@@ -15,7 +15,7 @@ vim.o.clipboard = 'unnamedplus'
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.cursorline = true
-
+vim.o.mouse = ''
 vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 vim.o.softtabstop = 2
@@ -23,7 +23,6 @@ vim.o.expandtab = true
 
 vim.keymap.set('n', 'Q', '<nop>', { noremap = true, silent = true })
 vim.keymap.set('n', 'q', ':noh<cr>', { noremap = true, silent = true })
-
 vim.filetype.add({
   extension = {
     templ = "templ"
