@@ -23,4 +23,3 @@ esac
 
 export FZF_DEFAULT_OPTS='--color=fg+:11 --height 40% --reverse --select-1 --margin=0,1'
 
-. "$HOME/.cargo/env"
