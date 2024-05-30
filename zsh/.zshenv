@@ -19,6 +19,7 @@ case ${OSTYPE} in
     ;;
   linux-gnu)
     export EDITOR=/usr/bin/nvim
+    export PATH="$HOME/.cargo/bin/":$PATH
     ;;
 esac
 
