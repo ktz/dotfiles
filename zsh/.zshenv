@@ -11,8 +11,15 @@ export LC_TIME="en_US.UTF-8"
 
 export XDG_CONFIG_HOME=$HOME/.config
 
-export PATH=/usr/local/bin/:$PATH
-export EDITOR=/usr/bin/nvim
+case ${OSTYPE} in
+  darwin*)
+    export PATH=/usr/local/bin/:$PATH
+    export EDITOR=/usr/local/bin/nvim
+    ;;
+  linux-gnu)
+    export EDITOR=/usr/bin/nvim
+    ;;
+esac
 
 export FZF_DEFAULT_OPTS='--color=fg+:11 --height 40% --reverse --select-1 --margin=0,1'
 
