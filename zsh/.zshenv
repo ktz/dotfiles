@@ -15,6 +15,7 @@ case ${OSTYPE} in
   darwin*)
     export PATH=/usr/local/bin/:$PATH
     export EDITOR=/usr/local/bin/nvim
+    . "$HOME/.cargo/env"
     ;;
   linux-gnu)
     export EDITOR=/usr/bin/nvim
@@ -22,4 +23,3 @@ case ${OSTYPE} in
 esac
 
 export FZF_DEFAULT_OPTS='--color=fg+:11 --height 40% --reverse --select-1 --margin=0,1'
-
