@@ -1,0 +1,133 @@
+* {
+    /* `otf-font-awesome` is required to be installed for icons */
+    min-height: 0;
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+window#waybar {
+    background-color: rgba(24, 24, 37, 0.6);
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.5;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+
+#clock,
+#cpu,
+#memory,
+#network,
+#systemd-failed-units,
+#tray,
+#window {
+  min-height: 0;
+  padding: 2px 10px;
+  border-radius: 3px;
+  background-color: #66cccc;
+  color: #1e1e2e;
+}
+
+#bluetooth {
+  min-height: 0;
+  padding: 2px 10px;
+  border-radius: 3px;
+}
+/* #bluetooth.disabled */
+#bluetooth.off {
+  background-color: transparent;
+}
+#bluetooth.on {
+  background-color: #228888;
+}
+#bluetooth.connected {
+  background-color: #66cccc;
+  color: #1e1e2e;
+}
+/* #bluetooth.discoverable */
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+#bluetooth.discovering {
+  background-color: #66cccc;
+  color: #1e1e2e;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: steps(12);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+/* #bluetooth.pairable */
+
+/* #network.disconnected { */
+/*     background-color: #f53c3c; */
+/* } */
+
+#systemd-failed-units {
+  background: #ff0000;
+}
+#systemd-failed-units.ok {}
+#systemd-failed-units.degraded {}
+
+
+#tray {}
+#tray menu {}
+#tray > .active {}
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    color: #eb4d4b;
+}
+
+#window {
+  /* color: #a6e3a1; */
+  /* background-color: #72bcd4; */
+  margin: 0 10px;
+  background-color: #89b4fa;
+}
+#waybar.empty #window {
+  background-color: transparent;
+}
+
+#workspaces {
+  background-color: transparent;
+}
+
+#workspaces button {
+  all: initial;
+  min-width: 0;
+  box-shadow: inset 0 -3px transparent;
+  padding: 2px 10px;
+  min-height: 0;
+  border-radius: 3px;
+  background-color: #181825;
+  color: #cdd6f4;
+}
+
+#workspaces button:hover {
+  box-shadow: inherit;
+  text-shadow: inherit;
+  color: #1e1e2e;
+  background-color: #cdd6f4;
+}
+
+#workspaces button.active {
+  color: #1e1e2e;
+  background-color: #89b4fa;
+}
+
+#workspaces button.urgent {
+  background-color: #f38ba8;
+}
