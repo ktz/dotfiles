@@ -25,3 +25,4 @@ alt - up: yabai -m window --resize top:0:-20 || yabai -m window --resize bottom:
 
 alt - z: yabai -m window --toggle zoom-fullscreen
 alt - f: yabai -m window --toggle float --grid 8:4:1:1:2:6
+alt + shift + ctrl - z: yabai -m window --toggle float --gird 4:5:0:4:1:1
