@@ -10,6 +10,7 @@ if [ ! -d ~/.config/nvim ]; then
   mkdir -p ~/.config/nvim
 fi
 ln -sf ${DIR}/neovim/.config/nvim/init.lua ~/.config/nvim/init.lua
+
 if [ ! -d ~/.config/nvim/lua ]; then
   mkdir -p ~/.config/nvim/lua
 fi
@@ -35,3 +36,13 @@ if [ ! -d ~/.config/skhd ]; then
 fi
 ln -sf ${DIR}/skhd/.config/skhd/skhdrc ~/.config/skhd/skhdrc
 
+if [ ! -d ~/.config/hypr ]; then
+  mkdir -p ~/.config/hypr
+fi
+ln -sf ${DIR}/hyprland/.config/hypr/hyprland.conf ~/.config/hypr/hyprland.conf
+
+if [ ! -d ~/.config/waybar ]; then
+  mkdir -p ~/.config/waybar
+fi
+ln -sf ${DIR}/waybar/.config/waybar/conf.jsonc ~/.config/waybar/conf.jsonc
+ln -sf ${DIR}/waybar/.config/waybar/style.css ~/.config/waybar/style.css
