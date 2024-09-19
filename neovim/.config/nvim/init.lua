@@ -417,72 +417,72 @@ require("lazy").setup({
       })
     end
   },
-  {
-    'vim-skk/skkeleton',
-    dependencies = { 'vim-denops/denops.vim', 'Shougo/ddc.vim', 'Shougo/pum.vim', 'Shougo/ddc-ui-pum' },
-    config = function()
-      vim.keymap.set('i', '<C-j>', '<Plug>(skkeleton-toggle)', { remap = true })
-      vim.fn['skkeleton#config']({
-        globalDictionaries = {
-          '~/.skk/SKK-JISYO.L',
-          '/usr/share/skk/SKK-JISYO.L'
-        }
-      })
-      local patch_global = vim.fn['ddc#custom#patch_global']
-      patch_global("ui", "pum")
-      patch_global("autoCompleteEvents", {
-        "InsertEnter",
-        "TextChangedI",
-        "TextChangedP",
-      })
-      patch_global('sources', {
-        'skkeleton',
-      })
-      patch_global("sourceOptions", {
-        _ = {
-          matchers = { "matcher_fuzzy" },
-          sorters = { "sorter_fuzzy" },
-          converters = { "converter_fuzzy", "converter_remove_overlap" },
-          minAutoCompleteLength = 1,
-          ignoreCase = true,
-        },
-        skkeleton = {
-          mark = "[SKK]",
-          matchers = { "skkeleton" },
-          sorters = {},
-          converters = {},
-          isVolatile = true,
-          minAutoCompleteLength = 2,
-        },
-      })
-      vim.fn["ddc#enable"]()
-      vim.fn["pum#set_option"]({
-        auto_select = true,
-        padding = true,
-        border = "single",
-        preview = true,
-        preview_border = "single",
-        preview_delay = 250,
-        preview_width = 72,
-        scrollbar_char = "▋",
-        highlight_normal_menu = "Normal",
-        offset_cmdcol = 1,
-        offset_cmdrow = 2,
-      })
-      vim.api.nvim_set_keymap('i', '<C-n>', '<cmd>call pum#map#select_relative(+1)<CR>',
-        { noremap = false, silent = true })
-      vim.api.nvim_set_keymap('i', '<C-p>', '<cmd>call pum#map#select_relative(-1)<CR>',
-        { noremap = false, silent = true })
-      vim.api.nvim_set_keymap('i', '<C-f>', '<cmd>call pum#map#confirm()<CR>', { noremap = false, silent = true })
-      vim.api.nvim_set_keymap('i', '<C-c>', '<cmd>call pum#map#cancel()<CR>', { noremap = false, silent = true })
-
-      -- vim.keymap.set('i', '<CR>', function()
-      --   return vim.fn["pum#visible()"]() == true and "<cmd>call pub#map#confirm()<CR>" or "<CR>"
-      -- end, { expr = true })
-      -- vim.cmd([[
-      --   inoremap <silent><expr> <CR> pum#visible() ? pub#map#confirm() : '<CR>'
-      -- ]])
-    end
-  }
+  -- {
+  --   'vim-skk/skkeleton',
+  --   dependencies = { 'vim-denops/denops.vim', 'Shougo/ddc.vim', 'Shougo/pum.vim', 'Shougo/ddc-ui-pum' },
+  --   config = function()
+  --     vim.keymap.set('i', '<C-j>', '<Plug>(skkeleton-toggle)', { remap = true })
+  --     vim.fn['skkeleton#config']({
+  --       globalDictionaries = {
+  --         '~/.skk/SKK-JISYO.L',
+  --         '/usr/share/skk/SKK-JISYO.L'
+  --       }
+  --     })
+  --     local patch_global = vim.fn['ddc#custom#patch_global']
+  --     patch_global("ui", "pum")
+  --     patch_global("autoCompleteEvents", {
+  --       "InsertEnter",
+  --       "TextChangedI",
+  --       "TextChangedP",
+  --     })
+  --     patch_global('sources', {
+  --       'skkeleton',
+  --     })
+  --     patch_global("sourceOptions", {
+  --       _ = {
+  --         matchers = { "matcher_fuzzy" },
+  --         sorters = { "sorter_fuzzy" },
+  --         converters = { "converter_fuzzy", "converter_remove_overlap" },
+  --         minAutoCompleteLength = 1,
+  --         ignoreCase = true,
+  --       },
+  --       skkeleton = {
+  --         mark = "[SKK]",
+  --         matchers = { "skkeleton" },
+  --         sorters = {},
+  --         converters = {},
+  --         isVolatile = true,
+  --         minAutoCompleteLength = 2,
+  --       },
+  --     })
+  --     vim.fn["ddc#enable"]()
+  --     vim.fn["pum#set_option"]({
+  --       auto_select = true,
+  --       padding = true,
+  --       border = "single",
+  --       preview = true,
+  --       preview_border = "single",
+  --       preview_delay = 250,
+  --       preview_width = 72,
+  --       scrollbar_char = "▋",
+  --       highlight_normal_menu = "Normal",
+  --       offset_cmdcol = 1,
+  --       offset_cmdrow = 2,
+  --     })
+  --     vim.api.nvim_set_keymap('i', '<C-n>', '<cmd>call pum#map#select_relative(+1)<CR>',
+  --       { noremap = false, silent = true })
+  --     vim.api.nvim_set_keymap('i', '<C-p>', '<cmd>call pum#map#select_relative(-1)<CR>',
+  --       { noremap = false, silent = true })
+  --     vim.api.nvim_set_keymap('i', '<C-f>', '<cmd>call pum#map#confirm()<CR>', { noremap = false, silent = true })
+  --     vim.api.nvim_set_keymap('i', '<C-c>', '<cmd>call pum#map#cancel()<CR>', { noremap = false, silent = true })
+  --
+  --     -- vim.keymap.set('i', '<CR>', function()
+  --     --   return vim.fn["pum#visible()"]() == true and "<cmd>call pub#map#confirm()<CR>" or "<CR>"
+  --     -- end, { expr = true })
+  --     -- vim.cmd([[
+  --     --   inoremap <silent><expr> <CR> pum#visible() ? pub#map#confirm() : '<CR>'
+  --     -- ]])
+  --   end
+  -- }
 
 })
