@@ -8,7 +8,9 @@ fi
 case ${OSTYPE} in
   darwin*)
     source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
-    . /usr/local/opt/asdf/libexec/asdf.sh
+    # . /usr/local/opt/asdf/libexec/asdf.sh
+    export ASDF_DATA_DIR="$HOME/.asdf"
+    export PATH="$ASDF_DATA_DIR/shims:$PATH"
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $HOME/Documents/macOS/zshrc.local
