@@ -253,9 +253,16 @@ return {
 		-- for you, so that they are available from within Neovim.
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
-			"stylua",
-			"prettierd",
+			"dockerfile-language-server",
 			"gopls",
+			"json-lsp",
+			"lua-language-server",
+			"prettierd",
+			"stylua",
+			"svelte-language-server",
+			"typescript-language-server",
+			"yamlfmt",
+			"yaml-language-server",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
