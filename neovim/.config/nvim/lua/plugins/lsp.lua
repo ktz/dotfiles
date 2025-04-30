@@ -236,6 +236,19 @@ return {
 					},
 				},
 			},
+			jsonls = {
+				settings = {
+					json = {
+						schemas = require("schemastore").json.schemas({
+							ignore = {
+								".eslintrc",
+								-- "package.json",
+							},
+						}),
+						validate = { enable = true },
+					},
+				},
+			},
 		}
 
 		-- Ensure the servers and tools above are installed

@@ -16,10 +16,13 @@ case ${OSTYPE} in
     export PATH=/usr/local/bin/:$PATH
     export EDITOR=/usr/local/bin/nvim
     . "$HOME/.cargo/env"
+    export CXX=/usr/local/opt/llvm@15/bin/clang++ #; ghcup tui
+    [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
     ;;
   linux-gnu)
     export EDITOR=/usr/bin/nvim
     export PATH="$HOME/.cargo/bin/":$PATH
+    [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
     ;;
 esac
 
