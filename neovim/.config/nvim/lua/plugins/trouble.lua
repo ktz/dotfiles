@@ -1,5 +1,6 @@
 return {
 	"folke/trouble.nvim",
+	-- branch = "dev",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
 		modes = {
@@ -7,6 +8,11 @@ return {
 				auto_open = true,
 				auto_close = true,
 				use_diagnostic_signs = true,
+			},
+		},
+		win = {
+			wo = {
+				wrap = true,
 			},
 		},
 	},
