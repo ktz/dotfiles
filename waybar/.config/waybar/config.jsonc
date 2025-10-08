@@ -3,7 +3,7 @@
   "spacing": 4,
   "modules-left": [
     "hyprland/workspaces",
-    "systemd-failed-units",
+    "systemd-failed-units"
   ],
   "modules-center": [
     "hyprland/window"
@@ -50,7 +50,7 @@
     }
   },
   "cpu": {
-    "format": "   {usage}%",
+    "format": "   {usage}%"
   },
   "hyprland/workspaces": {
     "disable-scroll": true,
@@ -66,6 +66,19 @@
       "urgent": "",
       "focused": "",
       "default": ""
+    },
+    "persistent-workspaces": {
+      "DP-1": [
+        1
+      ],
+      "HDMI-A-1": [
+        2
+      ],
+      "HDMI-A-2": [
+        3,
+        8,
+        9
+      ]
     }
   },
   "memory": {
@@ -79,11 +92,10 @@
     "format-disconnected": "Disconnected ⚠",
     "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
-  "systemd-failed-units": {
+  "systemd-failed-units": {},
+  "tray": {
+    "icon-size": 18,
+    "spacing": 10
   },
-    "tray": {
-      "icon-size": 18,
-      "spacing": 10
-  },
-  "hyprland/window": {},
+  "hyprland/window": {}
 }
