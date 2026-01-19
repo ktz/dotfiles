@@ -19,8 +19,11 @@ case ${OSTYPE} in
     if [ -e /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]; then
       source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
     fi
-    . "$HOME/.asdf/asdf.sh"
-    # . "$HOME/.asdf/completions/asdf.bash"
+    export ASDF_DATA_DIR="$HOME/.asdf"
+    # export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+    export PATH="$ASDF_DATA_DIR/shims:$PATH"
+    fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+    autoload -Uz compinit && compinit
     if [ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
       source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     fi

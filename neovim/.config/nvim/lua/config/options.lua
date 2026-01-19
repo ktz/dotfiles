@@ -62,6 +62,7 @@ vim.cmd([[
 	hi ZenkakuSpace ctermbg=red guibg=#ff0000
 	au BufNewFile,BufRead * match ZenkakuSpace /　/
 	autocmd BufNewFile,BufRead Dockerfile.* set filetype=dockerfile
+  autocmd BufNewFile,BufRead .env* set filetype=sh
 ]])
 
 vim.filetype.add({
