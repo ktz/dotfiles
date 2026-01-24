@@ -1,0 +1,101 @@
+/* Catppuccin Glass (Rofi-valid) */
+
+configuration {
+  // font: "JetBrainsMono Nerd Font 12";
+  font: "Hack Nerd Font 12";
+  show-icons: true;
+  // show-icons: false;
+  icon-theme: "Papirus-Dark";
+  display-drun: " ";
+  drun-display-format: "{icon} {name}";
+  modi: "drun,run,window";
+}
+
+* {
+  background-color: transparent;
+  text-color: #cdd6f4;
+  // border-radius: 12;
+  border-radius: 5;
+}
+
+/* ─ Window ─ */
+window {
+  location: center;
+  width: 600;
+  height: 480;
+  border: 2;
+  border-color: rgba(203,166,247,0.35);
+  background-color: rgba(24,24,37,0.65);
+  padding: 20;
+}
+
+/* ─ Input bar ─ */
+inputbar {
+  background-color: rgba(49,50,68,0.7);
+  // border-radius: 16;
+  border-radius: 5;
+  border: 1;
+  border-color: rgba(137,180,250,0.4);
+  padding: 8 12;
+  spacing: 8;
+  children: [ prompt, entry ];
+}
+
+prompt {
+  text-color: #89b4fa;
+  padding: 0 8;
+}
+
+entry {
+  text-color: #cdd6f4;
+  placeholder: "";
+}
+
+/* ─ List ─ */
+listview {
+  columns: 1;
+  lines: 8;
+  spacing: 8;
+  scrollbar: false;
+  fixed-height: false;
+  background-color: transparent;
+  padding: 10 0;
+}
+
+element {
+  background-color: rgba(49,50,68,0.3);
+  // border-radius: 14;
+  border-radius: 5;
+  padding: 8 12;
+}
+
+element selected {
+  background-color: rgba(203,166,247,0.9);
+  background-color: rgba(137,180,250,0.8);
+  text-color: #1e1e2e;
+  border: 2;
+  border-color: rgba(245,194,231,0.8);
+  // border-radius: 14;
+  border-radius: 5;
+  padding: 8 12;
+}
+
+element-icon {
+  size: 24;
+  margin: 0 8 0 2;
+}
+
+/* ─ Messages ─ */
+message {
+  background-color: rgba(49,50,68,0.5);
+  // border-radius: 10;
+  border-radius: 5;
+  padding: 10;
+}
+
+textbox {
+  background-color: transparent;
+  text-color: #bac2de;
+}
+
+
