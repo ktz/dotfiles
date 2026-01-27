@@ -46,5 +46,5 @@ background = #111111
 foreground = #ebdbb2
 #font_family MesloLGS NF
 font-family = "Hack Nerd Font"
-font-size = 11
+font-size = 12
 alpha-blending = linear
