@@ -1,10 +1,3 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 case ${OSTYPE} in
   darwin*)
     source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
@@ -16,21 +9,12 @@ case ${OSTYPE} in
     source $HOME/Documents/macOS/zshrc.local
     ;;
   linux-gnu)
-    if [ -e /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]; then
-      source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-    fi
+    eval "$(sheldon source)"
     export ASDF_DATA_DIR="$HOME/.asdf"
-    # export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
     export PATH="$ASDF_DATA_DIR/shims:$PATH"
     fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
     autoload -Uz compinit && compinit
-    if [ -e /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
-      source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    fi
-    if [ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
-      source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-    fi
-      source $HOME/.zshrc.local
+    source $HOME/.zshrc.local
     ;;
 esac
 
