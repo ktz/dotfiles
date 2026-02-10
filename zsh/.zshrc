@@ -1,3 +1,11 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 case ${OSTYPE} in
   darwin*)
     source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
@@ -7,14 +15,16 @@ case ${OSTYPE} in
     source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
     source $HOME/Documents/macOS/zshrc.local
+    if type direnv > /dev/null; then
+      eval "$(direnv hook zsh)"
+    fi
     ;;
   linux-gnu)
     eval "$(sheldon source)"
-    export ASDF_DATA_DIR="$HOME/.asdf"
-    export PATH="$ASDF_DATA_DIR/shims:$PATH"
-    fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
     autoload -Uz compinit && compinit
     source $HOME/.zshrc.local
+    eval "$(mise activate zsh)"
+    eval "$(fnox activate zsh)"
     ;;
 esac
 
@@ -41,9 +51,6 @@ fi
 if type fzf > /dev/null; then
   eval "$(fzf --zsh)"
 fi
-if type direnv > /dev/null; then
-  eval "$(direnv hook zsh)"
-fi
 # eval "$(ssh-agent -s)"
 if type yazi > /dev/null; then
   function y() {
@@ -54,3 +61,6 @@ if type yazi > /dev/null; then
     rm -f -- "$tmp"
   }
 fi
+
+if [ -f "$HOME/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/google-cloud-sdk/path.zsh.inc"; fi
+if [ -f "$HOME/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/google-cloud-sdk/completion.zsh.inc"; fi
