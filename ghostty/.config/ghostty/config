@@ -45,6 +45,9 @@ background = #111111
 # background-opacity = 0.9
 foreground = #ebdbb2
 #font_family MesloLGS NF
-font-family = "Hack Nerd Font"
+font-family = "Hack"
 font-size = 12
 alpha-blending = linear
+clipboard-read = allow
+clipboard-write = allow
+copy-on-select = false

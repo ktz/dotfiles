@@ -30,22 +30,22 @@ size = 10
 
 [font.bold]
 # family = "MesloLGS NF"
-family = "Hack Nerd Font"
+family = "Hack"
 style = "Bold"
 
 [font.bold_italic]
 # family = "MesloLGS NF"
-family = "Hack Nerd Font"
+family = "Hack"
 style = "Bold Italic"
 
 [font.italic]
 # family = "MesloLGS NF"
-family = "Hack Nerd Font"
+family = "Hack"
 style = "Italic"
 
 [font.normal]
 # family = "MesloLGS NF"
-family = "Hack Nerd Font"
+family = "Hack"
 style = "Regular"
 
 [window]

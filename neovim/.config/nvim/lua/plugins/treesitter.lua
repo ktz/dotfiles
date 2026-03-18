@@ -14,6 +14,7 @@ return {
 			"javascript",
 			"jq",
 			"json",
+			"rust",
 			"sql",
 			"svelte",
 			"tsx",
