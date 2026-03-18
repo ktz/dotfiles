@@ -1,0 +1,43 @@
+[[snippets]]
+name = "eza"
+trigger = "ls"
+snippet = "eza"
+if = "(( ${+commands[eza]} ))"
+
+[[snippets]]
+name = "zoxide"
+trigger = "cd"
+snippet = "z"
+if = "(( ${+commands[zi]} ))"
+
+[[snippets]]
+name = "rg"
+trigger = "grep"
+snippet = "rg"
+if = "(( ${+commands[rg]} ))"
+
+[[snippets]]
+name = "fd"
+trigger = "find"
+snippet = "fd"
+if = "(( ${+commands[fd]} ))"
+
+[[snippets]]
+name = "bat"
+trigger = "cat"
+snippet = "bat"
+if = "(( ${+commands[bat]} ))"
+
+[[snippets]]
+name = "git commit"
+trigger = "c"
+snippet = "commit -a -m"
+global = true
+context = '^git\s'
+
+[[snippets]]
+name = "nvim fzf"
+trigger = "fnim"
+snippet = "nvim $(fzf)"
+if = "(( ${+commands[fzf]} ))"
+
