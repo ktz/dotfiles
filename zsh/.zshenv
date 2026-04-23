@@ -11,6 +11,8 @@ export LC_TIME="en_US.UTF-8"
 
 export XDG_CONFIG_HOME=$HOME/.config
 
+export EDITOR=nvim
+
 case ${OSTYPE} in
   darwin*)
     export PATH=/usr/local/bin/:$PATH

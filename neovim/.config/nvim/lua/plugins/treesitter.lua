@@ -17,6 +17,7 @@ return {
 			"rust",
 			"sql",
 			"svelte",
+			"toml",
 			"tsx",
 			"typescript",
 			"yaml",
