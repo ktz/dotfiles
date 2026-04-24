@@ -1,6 +1,5 @@
 return {
 	"folke/trouble.nvim",
-	-- branch = "dev",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
 	opts = {
 		modes = {
@@ -10,10 +9,12 @@ return {
 				use_diagnostic_signs = true,
 			},
 		},
-		win = {
-			wo = {
-				wrap = true,
-			},
-		},
 	},
+	-- cmd = "Trouble",
+	-- keys = {
+	-- 	{
+	-- 		"<leader>tt",
+	-- 		"<cmd>Trouble diagnostics toggle<cr>",
+	-- 	},
+	-- },
 }
