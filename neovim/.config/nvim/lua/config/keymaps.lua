@@ -1,7 +1,7 @@
 vim.api.nvim_set_keymap("n", "<leader>c", "gcc", { noremap = false, silent = true })
 vim.api.nvim_set_keymap("v", "<leader>c", "gc", { noremap = false, silent = true })
 vim.keymap.set("n", "Q", "<nop>", { noremap = true, silent = true })
-vim.keymap.set("n", "q", ":noh<cr>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "q", ":noh<cr>", { noremap = true, silent = true })
 
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>p", [["+p]], { noremap = true, silent = true })
@@ -18,8 +18,6 @@ end, { desc = "Open Diagnostics in Fload" })
 --	require("conform").format()
 --end, { desc = "Format current file" })
 
---vim.keymap.set('n', 'Q', '<nop>', { noremap = true, silent = true })
---vim.keymap.set('n', 'q', ':noh<cr>', { noremap = true, silent = true })
 vim.api.nvim_create_user_command("T", function(opts)
 	vim.cmd("split")
 	vim.cmd("wincmd j")

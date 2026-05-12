@@ -45,6 +45,8 @@ vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣", eol = "↲", exte
 
 vim.opt.scrolloff = 5
 vim.opt.cmdheight = 0
+-- vim.cmd([[ autocmd RecordingEnter * set cmdheight=1 ]])
+-- vim.cmd([[ autocmd RecordingLeave * set cmdheight=0 ]])
 
 vim.opt.incsearch = true
 vim.opt.inccommand = "split"

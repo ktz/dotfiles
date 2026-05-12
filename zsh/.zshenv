@@ -24,6 +24,7 @@ case ${OSTYPE} in
   linux-gnu)
     export EDITOR=/usr/bin/nvim
     export PATH="$HOME/.cargo/bin/":$PATH
+    export PATH="$HOME/.local/bin":$PATH
     [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
     ;;
 esac
