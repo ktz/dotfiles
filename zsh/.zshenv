@@ -12,20 +12,17 @@ export LC_TIME="en_US.UTF-8"
 export XDG_CONFIG_HOME=$HOME/.config
 
 export EDITOR=nvim
+[ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
 case ${OSTYPE} in
   darwin*)
     export PATH=/usr/local/bin/:$PATH
-    export EDITOR=/usr/local/bin/nvim
     . "$HOME/.cargo/env"
-    export CXX=/usr/local/opt/llvm@15/bin/clang++ #; ghcup tui
-    [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
+    export CXX=/usr/local/opt/llvm@15/bin/clang++
     ;;
   linux-gnu)
-    export EDITOR=/usr/bin/nvim
     export PATH="$HOME/.cargo/bin/":$PATH
     export PATH="$HOME/.local/bin":$PATH
-    [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
     ;;
 esac
 
