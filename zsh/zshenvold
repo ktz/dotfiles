@@ -10,8 +10,15 @@ export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 
 export XDG_CONFIG_HOME=$HOME/.config
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_DATA_HOME=$HOME/.local/share
+export XDG_STATE_HOME=$HOME/.local/state
 
-export EDITOR=nvim
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+export GPG_TTY=$(tty)
+
 [ -f "$HOME/.ghcup/env" ] && . "$HOME/.ghcup/env"
 
 case ${OSTYPE} in

@@ -2,3 +2,24 @@ git clone https://github.com/ktz/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
 stow -v kitty zsh neovim tmux fish yabai skhd yazi waybar
+
+
+zsh configuration
+
+add following lines to /etc/zsh/zshenv
+
+if [[ -z "$XDG_CONFIG_HOME" ]]
+then
+  export XDG_CONFIG_HOME="$HOME/.config/"
+fi
+
+if [[ -d "$XDG_CONFIG_HOME/zsh" ]]
+then
+  export ZDOTDIR="$XDG_CONFIG_HOME/zsh/"
+fi
+
+make directories
+mkdir -p .local/state/zsh
+mkdir -p .cache/zsh
+
+install zoxide, fzf, yazi, mise, fnox, eza, fd, ripgrep, bat, starship, zabrze

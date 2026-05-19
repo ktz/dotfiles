@@ -1,0 +1,124 @@
+# version: 1.0.0
+"$schema" = 'https://starship.rs/config-schema.json'
+
+add_newline = false
+continuation_prompt = "[▸▹ ](dimmed white)"
+
+format = """($nix_shell$container$fill$git_metrics\n)$cmd_duration\
+$hostname\
+$os\
+$env_var\
+$jobs\
+$sudo\
+$username\
+$character"""
+
+right_format = """
+$all
+"""
+
+[fill]
+symbol = '·'
+style = 'cyan'
+
+[character]
+format = "$symbol "
+success_symbol = "[◎](bold italic bright-yellow)"
+error_symbol = "[○](italic purple)"
+vimcmd_symbol = "[■](italic dimmed green)"
+# not supported in zsh
+vimcmd_replace_one_symbol = "◌"
+vimcmd_replace_symbol = "□"
+vimcmd_visual_symbol = "▼"
+
+[env_var.VIMSHELL]
+format = "[$env_value]($style)"
+style = 'green italic'
+
+[sudo]
+format = "[$symbol]($style)"
+style = "bold italic bright-purple"
+symbol = "⋈┈"
+disabled = false
+
+[username]
+style_user = "bright-yellow bold italic"
+style_root = "purple bold italic"
+format = "[⭘ $user]($style) "
+disabled = false
+show_always = false
+
+[directory]
+truncation_length = 6
+truncation_symbol = ' '
+truncate_to_repo = false
+home_symbol = ' ~' # nf-costum-home
+style = 'fg:#7aa2f7 bg:#1a1b26'
+read_only = ' 󰌾 ' # nf-md-lock
+read_only_style = 'fg:#f7768e bg:#1a1b26'
+format = '[$path]($style)[$read_only]($read_only_style)'
+
+[cmd_duration]
+format = "[◄ $duration ](italic white)"
+
+[jobs]
+format = "[$symbol$number]($style) "
+style = "white"
+symbol = "[▶](blue italic)"
+
+[gcloud]
+disabled = true
+
+[git_branch]
+symbol = '  ' # nf-fa-github_alt, nf-fa-code_fork
+truncation_length = 6
+truncation_symbol = ''
+style = 'fg:#7aa2f7 bg:#1a1b26'
+format = '[  $symbol$branch(:$remote_branch)]($style)' # nf-pl-left_soft_divider
+
+
+[git_status]
+# format = "[$untracked$staged$modified$renamed$conflicted$ahead_behind ]($style)"
+format = '([\[$all_status$ahead_behind\] ]($style))'
+style = 'fg:#e0af68 bg:#1a1b26'
+# options available for format
+staged     = "[+](green)"
+modified   = "[!](yellow)"
+renamed    = "[»](blue)"
+deleted    = "[-](red)"
+untracked  = "[?](red)"
+stashed    = "[≡](lavender)"
+conflicted = "[✖](red bold)"
+
+ahead      = "[⇡${count}](teal)"
+behind     = "[⇣${count}](peach)"
+diverged   = "[⇕⇡${ahead_count}⇣${behind_count}](mauve)"
+
+[aws]
+disabled = true
+format = " [aws](italic) [$symbol $profile $region]($style)"
+style = "bold blue"
+symbol = "▲ "
+
+[nix_shell]
+style = 'bold italic dimmed blue'
+symbol = '✶'
+format = '[$symbol nix⎪$state⎪]($style) [$name ](italic dimmed white)'
+impure_msg = '[⌽](bold dimmed red)'
+pure_msg = '[⌾](bold dimmed green)'
+unknown_msg = '[◌](bold dimmed yellow)'
+
+[os]
+format = "$symbol"
+# style = "fg:$1a1b26 bg:#7aa2f7"
+disabled = false
+
+[os.symbols]
+Arch = "[ ](bold blue)"
+Fedora = "[ ](bold blue)"
+Kali = "[ ](bold fg:#8e9292)"
+AlmaLinux = "[ ](bold fg:#f47920)"
+NixOS = "[ ](bold cyan)"
+Ubuntu = " "
+Macos = "[ ](bold white)"
+Windows = " "
