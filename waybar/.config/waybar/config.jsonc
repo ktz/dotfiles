@@ -45,6 +45,9 @@
       "HDMI-A-1": [
         8,
         9
+      ],
+      "HDMI-A-2": [
+        10
       ]
     }
   },
@@ -80,11 +83,15 @@
     }
   },
   "cpu": {
+    "interval": 10,
     "format": "CPU: {usage}%",
-    "tooltip": false
+    "tooltip": false,
+    "on-click": "exec ghostty --title=btop -e btop"
   },
   "memory": {
-    "format": "Mem: {used}GiB"
+    "interval": 30,
+    "format": "Mem: {used}GiB",
+    "on-click": "exec ghostty --title=htop -e htop"
   },
   "disk": {
     "interval": 60,

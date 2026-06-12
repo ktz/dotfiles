@@ -4,6 +4,23 @@
 vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.clipboard = "unnamedplus"
+-- Fallback safely to OSC 52 for writing without trigger-happy reads
+-- vim.g.clipboard = {
+-- 	name = "OSC 52",
+-- 	copy = {
+-- 		["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+-- 		["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+-- 	},
+-- 	paste = {
+-- 		-- Leave this empty or use standard registers to avoid automated background read loops
+-- 		["+"] = function()
+-- 			return vim.fn.getreg('"')
+-- 		end,
+-- 		["*"] = function()
+-- 			return vim.fn.getreg('"')
+-- 		end,
+-- 	},
+-- }
 
 vim.opt.expandtab = true
 vim.opt.shiftwidth = 2
@@ -72,3 +89,5 @@ vim.filetype.add({
 		templ = "templ",
 	},
 })
+
+vim.opt.termguicolors = true

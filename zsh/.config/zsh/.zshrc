@@ -67,6 +67,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
+export PATH="$HOME/.moon/bin:$PATH"
+
 source "$ZDOTDIR/fzf.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/bindings.zsh"

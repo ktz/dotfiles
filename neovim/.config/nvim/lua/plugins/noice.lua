@@ -4,7 +4,7 @@ return {
 	opts = {},
 	dependencies = {
 		"MunifTanjim/nui.nvim",
-		"rcarriga/nvim-notify",
+		-- "rcarriga/nvim-notify",
 	},
 	init = function()
 		require("noice").setup({

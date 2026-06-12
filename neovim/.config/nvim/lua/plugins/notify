@@ -4,5 +4,6 @@ return {
 		timeout = 3000,
 		render = "compact",
 		stages = "fade",
+		background_colour = "#000000",
 	},
 }

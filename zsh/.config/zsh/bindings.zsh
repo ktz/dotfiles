@@ -6,6 +6,12 @@ ZVM_VI_HIGHLIGHT_BACKGROUND=none
 ZVM_VI_HIGHLIGHT_FOREBROUND=none
 ZVM_VI_HIGHLIGHT_EXTRASTYLE=none
 
+# ^[[D ←
+# ^[[C →
+# ^[[A ↑
+# ^[[B ↓
+# ^[[1;5C CTRL + RIGHT ALLOW
+# ^[[1;5D CTRL + LEFT ALLOW
 zvm_after_init() {
   bindkey '^[[1;5C' forward-word
   bindkey '^[[1;5D' backward-word

@@ -36,10 +36,11 @@ format = "[$env_value]($style)"
 style = 'green italic'
 
 [sudo]
+# this module make a log entry output for each command. PWD=$HOME; USER=root; COMMAND=/usr/bin/true
 format = "[$symbol]($style)"
 style = "bold italic bright-purple"
 symbol = "⋈┈"
-disabled = false
+disabled = true
 
 [username]
 style_user = "bright-yellow bold italic"
@@ -71,7 +72,7 @@ disabled = true
 
 [git_branch]
 symbol = '  ' # nf-fa-github_alt, nf-fa-code_fork
-truncation_length = 6
+truncation_length = 10
 truncation_symbol = ''
 style = 'fg:#7aa2f7 bg:#1a1b26'
 format = '[  $symbol$branch(:$remote_branch)]($style)' # nf-pl-left_soft_divider

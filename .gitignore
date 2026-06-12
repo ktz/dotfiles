@@ -1,4 +1,5 @@
 .DS_Store
 neovim/.config/nvim/lazy-lock.json
 **/*.log
+zsh/.config/zsh/.zcompdump
 

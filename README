@@ -4,8 +4,6 @@ cd ~/.dotfiles
 stow -v kitty zsh neovim tmux fish yabai skhd yazi waybar
 
 
-zsh configuration
-
 add following lines to /etc/zsh/zshenv
 
 if [[ -z "$XDG_CONFIG_HOME" ]]

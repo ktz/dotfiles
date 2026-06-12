@@ -31,3 +31,12 @@ vim.api.nvim_create_autocmd("TermOpen", {
 })
 
 vim.api.nvim_set_keymap("t", "<ESC>", [[<C-\><C-n>]], { noremap = true, silent = true })
+
+-- avoid tmux keymap
+-- Increment/Decrement with + and -
+vim.keymap.set("n", "+", "<C-a>", { desc = "Increment number" })
+vim.keymap.set("n", "-", "<C-x>", { desc = "Decrement number" })
+
+-- Visual mode (retains selection after change)
+vim.keymap.set("v", "+", "<C-a>gv", { desc = "Increment number" })
+vim.keymap.set("v", "-", "<C-x>gv", { desc = "Decrement number" })
