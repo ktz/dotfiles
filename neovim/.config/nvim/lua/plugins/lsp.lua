@@ -44,7 +44,17 @@ return {
 				})
 			end,
 			settings = {
-				Lua = {},
+				Lua = {
+					diagnostics = {
+						globals = { "hl", "vim" },
+					},
+					workspace = {
+						library = vim.api.nvim_get_runtime_file("", true),
+					},
+					telemetry = {
+						enable = false,
+					},
+				},
 			},
 		})
 		-- Brief aside: **What is LSP?**

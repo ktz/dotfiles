@@ -68,6 +68,8 @@ vim.opt.cmdheight = 0
 vim.opt.incsearch = true
 vim.opt.inccommand = "split"
 
+vim.opt.autoread = true
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
 	pattern = "*",
