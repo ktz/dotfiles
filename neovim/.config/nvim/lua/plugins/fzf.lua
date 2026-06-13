@@ -31,5 +31,12 @@ return {
 			end,
 			desc = "Grep all current working directory",
 		},
+		{
+			"<leader>b",
+			function()
+				require("fzf-lua").buffers()
+			end,
+			desc = "Find buffers in current working directory",
+		},
 	},
 }
