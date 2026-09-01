@@ -29,6 +29,7 @@ case ${OSTYPE} in
   linux-gnu)
     export PATH="$HOME/.cargo/bin/":$PATH
     export PATH="$HOME/.local/bin":$PATH
+    export PATH="$HOME/.local/share/android-studio/bin":$PATH
     ;;
 esac
 

@@ -69,6 +69,14 @@ vim.opt.incsearch = true
 vim.opt.inccommand = "split"
 
 vim.opt.autoread = true
+-- vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter", "CursorHold", "CursorHoldI", "TermLeave" }, {
+-- 	group = vim.api.nvim_create_augroup("AutoReloadBuffer", { clear = true }),
+-- 	callback = function()
+-- 		if vim.fn.getcmdwintype() == "" then
+-- 			vim.cmd("checktime")
+-- 		end
+-- 	end,
+-- })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
@@ -93,3 +101,4 @@ vim.filetype.add({
 })
 
 vim.opt.termguicolors = true
+vim.opt.colorcolumn = "80,120"

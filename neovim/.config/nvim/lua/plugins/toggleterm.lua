@@ -3,7 +3,8 @@ return {
 	version = "*",
 	-- config = true,
 	opts = {
-		size = 20,
+		-- size = 20,
 		open_mapping = [[<c-t>]],
+		direction = "float",
 	},
 }

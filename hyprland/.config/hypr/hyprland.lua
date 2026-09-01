@@ -6,9 +6,10 @@ hl.monitor({ output = "HDMI-A-2", mode = "1280x1024@60", position = "2560x416", 
 
 hl.workspace_rule({ workspace = "1", monitor = "DP-1", persistent = true })
 hl.workspace_rule({ workspace = "5", monitor = "DP-1", persistent = true })
-hl.workspace_rule({ workspace = "7", monitor = "DP-1", persistent = true })
+hl.workspace_rule({ workspace = "6", monitor = "DP-1", persistent = true })
 hl.workspace_rule({ workspace = "2", monitor = "DP-2", persistent = true })
-hl.workspace_rule({ workspace = "6", monitor = "HDMI-A-1", persistent = true })
+hl.workspace_rule({ workspace = "3", monitor = "DP-2", persistent = true })
+hl.workspace_rule({ workspace = "7", monitor = "HDMI-A-1", persistent = true })
 hl.workspace_rule({ workspace = "8", monitor = "HDMI-A-1", persistent = true })
 hl.workspace_rule({ workspace = "9", monitor = "HDMI-A-1", persistent = true })
 hl.workspace_rule({ workspace = "10", monitor = "HDMI-A-2", persistent = true })
@@ -277,6 +278,13 @@ hl.window_rule({
 	center = true,
 })
 hl.window_rule({
+	name = "opensnitch",
+	match = { class = "^opensnitch" },
+	float = true,
+	size = { "monitor_w*0.75", "monitor_h*0.75" },
+	center = true,
+})
+hl.window_rule({
 	name = "spotify",
 	match = { class = "^(Spotify)$" },
 	workspace = 8,
@@ -284,12 +292,12 @@ hl.window_rule({
 hl.window_rule({
 	name = "virt-viewer",
 	match = { class = "^(virt-viewer)$" },
-	workspace = 7,
+	workspace = 6,
 })
 hl.window_rule({
 	name = "gstreamer",
 	match = { class = "^(GStreamer)$" },
-	workspace = 6,
+	workspace = 7,
 })
 hl.window_rule({
 	name = "alacritty",
@@ -304,7 +312,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "specialWorkspace",
 	match = { workspace = "special:magic" },
-	opacity = "0.8",
+	opacity = "0.9",
 })
 hl.window_rule({
 	name = "waydroid",
@@ -314,7 +322,7 @@ hl.window_rule({
 hl.window_rule({
 	name = "Vial",
 	match = { class = "^(Vial)$" },
-	workspace = 7,
+	workspace = 5,
 })
 
 -- XWayland Setup

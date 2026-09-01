@@ -10,6 +10,10 @@
     "hyprland/window",
     "custom/sep",
     "systemd-failed-units"
+    // "niri/workspace",
+    // "niri/mode",
+    // "niri/scratchpad",
+    // "niri/window"
   ],
   "modules-center": [],
   "modules-right": [
@@ -127,5 +131,18 @@
   "custom/sep": {
     "format": "|",
     "interval": 0
+  },
+  "niri/mode": {
+    "format": "<span style=\"italic\">{}</span>"
+  },
+  "niri/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": [
+      "",
+      "-"
+    ],
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}"
   }
 }

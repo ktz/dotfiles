@@ -46,7 +46,7 @@ return {
 			settings = {
 				Lua = {
 					diagnostics = {
-						globals = { "hl", "vim" },
+						globals = { "hl", "vim", "Snacks" },
 					},
 					workspace = {
 						library = vim.api.nvim_get_runtime_file("", true),
