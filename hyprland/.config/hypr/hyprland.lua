@@ -31,7 +31,8 @@ hl.env = {
 
 -- Autostart Applications
 hl.on("hyprland.start", function()
-	hl.exec_cmd("sleep 1 && waybar")
+	-- hl.exec_cmd("sleep 1 && waybar")
+	hl.exec_cmd("noctalia")
 	-- hl.exec_cmd(%)
 	hl.exec_cmd("hyprpaper")
 	hl.exec_cmd("fcitx5")

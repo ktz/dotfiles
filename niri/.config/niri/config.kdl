@@ -75,7 +75,7 @@ input {
 
     // Focus windows and outputs automatically when moving the mouse into them.
     // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
+    focus-follows-mouse max-scroll-amount="0%"
 }
 
 // You can configure outputs by their name, which you can find
@@ -85,9 +85,31 @@ input {
 // https://yalter.github.io/niri/Configuration:-Outputs
 // Remember to uncomment the node by removing "/-"!
 
-output "Virtual-1" {
+//output "Virtual-1" {
 	// mode "2538x1319@60"
-  scale 1 
+//  scale 1 
+//}
+output "DP-1" {
+//  mode "2560x1440@60.000"
+  mode "2560x1440@59.951"
+  scale 1
+  position x=0 y=0
+}
+output "DP-2" {
+  mode "2560x1440@59.951"
+  scale 1
+  position x=-2560 y=0
+}
+output "HDMI-A-1" {
+  mode "1680x1050@59.883"
+  scale 1
+  position x=0 y=-1050
+}
+output "HDMI-A-2" {
+  mode "1280x1024@60.020"
+  //  1920x1080@60.000
+  scale 1
+  position x=2560 y=416
 }
 
 // Settings that influence how windows are positioned and sized.
@@ -116,6 +138,7 @@ layout {
 
         // Fixed sets the width in logical pixels exactly.
         // fixed 1920
+        
     }
 
     // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
@@ -254,7 +277,7 @@ layout {
 // See the binds section below for more spawn examples.
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
-// spawn-at-startup "waybar"
+spawn-at-startup "noctalia"
 spawn-at-startup "fcitx5"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:

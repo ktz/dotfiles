@@ -30,6 +30,10 @@ case ${OSTYPE} in
     export PATH="$HOME/.cargo/bin/":$PATH
     export PATH="$HOME/.local/bin":$PATH
     export PATH="$HOME/.local/share/android-studio/bin":$PATH
+
+    export ANDROID_HOME=$HOME/Projects/Android/Sdk
+    export ANDROID_SDK_ROOT=$HOME/Projects/Android/Sdk
+    export PATH=$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools
     ;;
 esac
 
