@@ -17,7 +17,8 @@ hl.workspace_rule({ workspace = "10", monitor = "HDMI-A-2", persistent = true })
 -- Variables
 local terminal = "ghostty"
 local browser = "chromium"
-local launcher = "rofi -show drun"
+-- local launcher = "rofi -show drun"
+local launcher = "noctalia msg panel-toggle launcher"
 local runner = "rofi -show run"
 local mainMod = "SUPER"
 -- local reload_waybar = "pkill waybar && waybar &"
@@ -252,6 +253,7 @@ hl.bind(
 )
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"))
 hl.bind("XF86AudioMute", hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"), { locked = true })
+hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 -- hl.bind(
 -- 	mainMod .. " + SHIFT + up",
 -- 	hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"),

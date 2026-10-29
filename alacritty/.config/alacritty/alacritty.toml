@@ -19,7 +19,8 @@ white = "0xdfbf8e"
 yellow = "0xe78a4e"
 
 [colors.primary]
-background = "0x282828"
+# background = "0x282828"
+background = "0x000000"
 foreground = "0xdfbf8e"
 
 [env]
@@ -29,29 +30,25 @@ TERM = "xterm-256color"
 size = 10
 
 [font.bold]
-# family = "MesloLGS NF"
 family = "Hack"
 style = "Bold"
 
 [font.bold_italic]
-# family = "MesloLGS NF"
 family = "Hack"
 style = "Bold Italic"
 
 [font.italic]
-# family = "MesloLGS NF"
 family = "Hack"
 style = "Italic"
 
 [font.normal]
-# family = "MesloLGS NF"
 family = "Hack"
 style = "Regular"
 
 [window]
 blur = true
-opacity = 1
+opacity = 0.95
 
-# [window.padding]
-# x = 10
-# y = 10
+[window.padding]
+x = 5
+y = 5
