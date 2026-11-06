@@ -33,12 +33,14 @@ vim.pack.add({
 	{ src = gh("nvim-tree/nvim-web-devicons") }, -- trouble, lualine deps
 	{ src = gh("tpope/vim-surround") }, -- no setup needed
 	{ src = gh("folke/which-key.nvim") },
+	{ src = gh("MeanderingProgrammer/render-markdown.nvim") },
 })
 
 require("plugins.snacks")
 require("plugins.nightfox")
 
 require("gitsigns").setup({})
+require("render-markdown").setup({})
 
 require("plugins.blink")
 require("plugins.conform")
