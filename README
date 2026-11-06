@@ -1,7 +1,7 @@
 git clone https://github.com/ktz/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 
-stow -v kitty zsh neovim tmux fish yabai skhd yazi waybar
+stow -v zsh neovim tmux yazi niri
 
 
 add following lines to /etc/zsh/zshenv

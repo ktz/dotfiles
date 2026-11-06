@@ -10,8 +10,10 @@ require("snacks").setup({
 	},
 })
 
+_G.Snacks = require("snacks")
+
 vim.keymap.set({ "n", "v" }, "<leader>f", function()
-	Snacks.picker.files({ hidden = true })
+	require("snacks").picker.files({ hidden = true })
 end, { desc = "Find files" })
 vim.keymap.set({ "n", "v" }, "<leader>F", function()
 	Snacks.picker.files({ hidden = true, ignored = true })

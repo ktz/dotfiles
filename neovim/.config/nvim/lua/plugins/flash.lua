@@ -1,13 +1,8 @@
--- 1. Create a function to initialize the plugin configuration and keymaps
 local function setup_flash()
-	-- Load the plugin package safely
-	-- pcall(vim.cmd, "packadd flash.nvim")
-
-	-- Configure flash.nvim
 	require("flash").setup({
 		modes = {
 			search = {
-				enabled = true, -- Note: Fixed typo from 'enables' to 'enabled'
+				enabled = true,
 			},
 			char = {
 				jump_labels = true,
@@ -15,7 +10,6 @@ local function setup_flash()
 		},
 	})
 
-	-- Set up keymaps
 	vim.keymap.set({ "n", "x", "o" }, "s", function()
 		require("flash").jump()
 	end, { desc = "Flash" })
@@ -37,11 +31,4 @@ local function setup_flash()
 	end, { desc = "Toggle Flash Search" })
 end
 
--- 2. Trigger the setup function via an autocommand to achieve "VeryLazy" behavior
--- vim.api.nvim_create_autocmd("User", {
--- 	pattern = "VeryLazy",
--- 	callback = function()
--- 		setup_flash()
--- 	end,
--- })
 setup_flash()
