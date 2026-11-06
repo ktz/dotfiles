@@ -13,7 +13,10 @@ return {
 							},
 						},
 						diagnostics = {
-							disabled = { "macro-error" },
+							disabled = { "macro-error", "inactive-code" },
+						},
+						files = {
+							excludeDirs = { "target" },
 						},
 					},
 				},

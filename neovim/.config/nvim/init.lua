@@ -1,2 +1,3 @@
-vim.env.XDG_STATE_HOME = "/tmp"
-require("config.lazy")
+require("config.options")
+require("config.pack")
+require("config.keymaps")
